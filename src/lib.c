@@ -1,59 +1,63 @@
-// Raylib for nodejs.
-// Generated at 2024-11-19T03:27:51.470Z
-// for Raylib 5.5.0
+// Raylib for nodejs 5.5.0
 
-#include <assert.h>
 #include <node_api.h>
-#include <stdlib.h>
+#include <raylib.h>
+#include <stdio.h>
 #include <string.h>
-#include "raylib.h"
 
-// get the args
-napi_value* get_args(napi_env env, napi_callback_info info, size_t argc) {
-  napi_value* argv = malloc(sizeof(napi_value) * argc);
-  napi_status status = napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
-  return argv;
-}
+#define NAPI_CALL(env, call)                                                     do {                                                                             napi_status status = (call);                                                   if (status != napi_ok) {                                                         const napi_extended_error_info *error_info = NULL;                             napi_get_last_error_info((env), &error_info);                                  const char *err_message = error_info->error_message;                           napi_throw_error((env), NULL, err_message);                                    return NULL;                                                                 }                                                                            } while (0)
 
-// get a string function argument as a char*
-char* get_string_arg(napi_value arg, napi_env env) {
-  napi_valuetype* result;
-  if (napi_typeof(env, arg, result) != napi_string) {
-    napi_throw_type_error(env, NULL, "Expected a string argument.");
+// Helper to get string argument with default value
+const char* get_string_arg(napi_env env, napi_callback_info info) {
+  size_t argc = 1;
+  napi_value args[1];
+  static char str_buf[1024];  // Note: Static for return safety
+
+  NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, NULL, NULL));
+
+  // Return default if no args or not a string
+  if (argc < 1) {
     return NULL;
   }
+
+  napi_valuetype value_type;
+  NAPI_CALL(env, napi_typeof(env, args[0], &value_type));
+  if (value_type != napi_string) {
+    return NULL;
+  }
+
   size_t str_len;
-  napi_get_value_string_utf8(env, arg, NULL, 0, &str_len);
-  char str_value[str_len + 1];
-  napi_get_value_string_utf8(env, arg, str_value, str_len + 1, NULL);
-  return str_value;
+  NAPI_CALL(env, napi_get_value_string_utf8(env, args[0], str_buf, sizeof(str_buf), &str_len));
+
+  return str_buf;
+}
+
+// Helper to return string to JavaScript
+napi_value return_string(napi_env env, const char* str) {
+  napi_value return_value;
+  NAPI_CALL(env, napi_create_string_utf8(env, str, strlen(str), &return_value));
+  return return_value;
 }
 
 
 // Function to test bindings
-  static napi_value RaylibSayHello(napi_env env, napi_callback_info info) {
-    napi_value args[1] = get_args(env, info, 1);
-    char* name = get_string_arg(args[0], env);
+napi_value RaylibSayHello(napi_env env, napi_callback_info info) {
+  // Get the name argument (with default "World")
+  const char* name = get_string_arg(env, info);
 
-    char response_cstr[1024];
-    snprintf(response_cstr, sizeof(response_cstr), "Hello %s!", name != NULL ? name : "World");
+  // Create result string
+  char result[1024];
+  snprintf(result, sizeof(result), "Hello, %s!", name == NULL ?  "World" : name);
 
-    napi_status status;
-    napi_value response;
-    
-    status = napi_create_string_utf8(env, response_cstr, strlen(response_cstr), &response);
-    assert(status == napi_ok);
-    return response;
-  }
-
-#define NAPI_METHOD(name, func) { name, 0, func, 0, 0, 0, napi_default, 0 }
+  // Return the result
+  return return_string(env, result);
+}
 
 static napi_value Init(napi_env env, napi_value exports) {
-  napi_status status;
-  
-  napi_property_descriptor desc = NAPI_METHOD("SayHello", RaylibSayHello);
-  status = napi_define_properties(env, exports, 1, &desc);
-  assert(status == napi_ok);
+  napi_value fn;
+
+  NAPI_CALL(env, napi_create_function(env, "SayHello", NAPI_AUTO_LENGTH, RaylibSayHello, NULL, &fn));
+  NAPI_CALL(env, napi_set_named_property(env, exports, "SayHello", fn));
   
 
   return exports;

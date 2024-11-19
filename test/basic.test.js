@@ -5,7 +5,7 @@ test('should have tests', () => {
 })
 
 test('raylib.SayHello()', () => {
-  expect(raylib.SayHello()).toBe('Hello, world!')
+  expect(raylib.SayHello()).toBe('Hello, World!')
 })
 
 test('raylib.SayHello("Raylib")', () => {
