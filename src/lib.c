@@ -249,6 +249,8 @@ static napi_value Init(napi_env env, napi_value exports) {
   NAPI_CALL(env, napi_set_named_property(env, exports, "CloseWindow", fn));
   NAPI_CALL(env, napi_create_function(env, "BeginDrawing", NAPI_AUTO_LENGTH, export_BeginDrawing, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "BeginDrawing", fn));
+  NAPI_CALL(env, napi_create_function(env, "DrawFPS", NAPI_AUTO_LENGTH, export_DrawFPS, NULL, &fn));
+  NAPI_CALL(env, napi_set_named_property(env, exports, "DrawFPS", fn));
 
   return exports;
 }

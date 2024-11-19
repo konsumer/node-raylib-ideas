@@ -8,6 +8,7 @@ while (!r.WindowShouldClose()) {
   r.ClearBackground(r.RAYWHITE)
   r.DrawText('Congrats! You created your first node-raylib window!', 120, 200, 20, r.LIGHTGRAY)
   r.EndDrawing()
+  r.DrawFPS(10, 10)
 }
 
 r.CloseWindow()
