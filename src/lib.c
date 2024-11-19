@@ -155,10 +155,8 @@ napi_value export_SayHello(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   char* name = get_string_arg(args, 0, env, info);
   free(args);
-
   char result[127] = {};
   snprintf(result, sizeof(result), "Hello, %s!", name == NULL ? "World" : name);
-
   return return_string(env, result);
 }
 
@@ -167,6 +165,7 @@ napi_value export_InitWindow(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info);
   int height = get_int_arg(args, 1, env, info);
   char* title = get_string_arg(args, 2, env, info);
+  free(args);
   InitWindow(width, height, title);
   return undefined;
 }
@@ -174,6 +173,7 @@ napi_value export_InitWindow(napi_env env, napi_callback_info info) {
 napi_value export_SetTargetFPS(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int fps = get_int_arg(args, 0, env, info);
+  free(args);
   SetTargetFPS(fps);
   return undefined;
 }
@@ -185,6 +185,7 @@ napi_value export_WindowShouldClose(napi_env env, napi_callback_info info) {
 napi_value export_ClearBackground(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Color color = get_color_arg(args, 0, env, info);
+  free(args);
   ClearBackground(color);
   return undefined;
 }
@@ -193,6 +194,7 @@ napi_value export_DrawFPS(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int posX = get_int_arg(args, 0, env, info);
   int posY = get_int_arg(args, 1, env, info);
+  free(args);
   DrawFPS(posX, posY);
   return undefined;
 }
@@ -204,6 +206,7 @@ napi_value export_DrawText(napi_env env, napi_callback_info info) {
   int posY = get_int_arg(args, 2, env, info);
   int fontSize = get_int_arg(args, 3, env, info);
   Color color = get_color_arg(args, 4, env, info);
+  free(args);
   DrawText(text, posX, posY, fontSize, color);
   return undefined;
 }
@@ -221,6 +224,13 @@ napi_value export_EndDrawing(napi_env env, napi_callback_info info) {
 napi_value export_CloseWindow(napi_env env, napi_callback_info info) {
   CloseWindow();
   return undefined;
+}
+
+napi_value export_FileExists(napi_env env, napi_callback_info info) {
+  napi_value* args = get_args(env, info, 1);
+  char* filename = get_string_arg(args, 0, env, info);
+  free(args);
+  return FileExists(filename) ? n_true : n_false;
 }
 
 static napi_value Init(napi_env env, napi_value exports) {
@@ -251,6 +261,8 @@ static napi_value Init(napi_env env, napi_value exports) {
   NAPI_CALL(env, napi_set_named_property(env, exports, "BeginDrawing", fn));
   NAPI_CALL(env, napi_create_function(env, "DrawFPS", NAPI_AUTO_LENGTH, export_DrawFPS, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "DrawFPS", fn));
+  NAPI_CALL(env, napi_create_function(env, "FileExists", NAPI_AUTO_LENGTH, export_FileExists, NULL, &fn));
+  NAPI_CALL(env, napi_set_named_property(env, exports, "FileExists", fn));
 
   return exports;
 }

@@ -13,6 +13,7 @@ exports.EndDrawing = native.EndDrawing
 exports.CloseWindow = native.CloseWindow
 exports.BeginDrawing = native.BeginDrawing
 exports.DrawFPS = native.DrawFPS
+exports.FileExists = native.FileExists
 
 exports.LIGHTGRAY = Object.freeze({ r: 200, g: 200, b: 200, a: 255 }) // Light Gray
 exports.GRAY = Object.freeze({ r: 130, g: 130, b: 130, a: 255 }) // Gray
