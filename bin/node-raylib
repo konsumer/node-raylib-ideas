@@ -38,8 +38,7 @@ if (!filename) {
     filename = f1
   } else if (raylib.FileExists(f2)) {
     filename = f2
-  }
-  else {
+  } else {
     console.error(usage)
     process.exit(0)
   }
@@ -68,4 +67,4 @@ global.raylib = raylib
 require(realpath)
 
 // load the file, but don't require it (so you can use this file in an exe bundler)
-eval(fs.readFileSync(realpath))
+// eval(fs.readFileSync(realpath))
