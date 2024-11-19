@@ -15,3 +15,4 @@ I am working on improvments around [node-raylib](https://github.com/RobLoach/nod
 - Integrate prebuild libs & node-raylib bin into release for all platforms
 - universal binaries for mac (arm64/x86-64)
 - cross build (via [toolchain](https://medium.com/@au42/the-useful-raspberrypi-cross-compile-guide-ea56054de187)) for pi, including DRM.
+- currently, objects are used for structs, but I should probly use "magic classes" and pointers to cut down on copying
