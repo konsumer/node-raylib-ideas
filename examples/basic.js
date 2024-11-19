@@ -1,4 +1,4 @@
-const r = require('../index.js')
+const r = require('raylib')
 
 r.InitWindow(800, 450, 'raylib [core] example - basic window')
 r.SetTargetFPS(60)

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx -y vitest --run --globals",
-    "start": "node examples/basic.js",
+    "start": "node bin/node-raylib examples/basic.js",
     "gen": "node tools/gen.mjs",
     "compile": "cmake-js compile",
     "postinstall": "node tools/postinstall.js || npm run compile",
