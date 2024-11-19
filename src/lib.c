@@ -233,6 +233,14 @@ napi_value export_FileExists(napi_env env, napi_callback_info info) {
   return FileExists(filename) ? n_true : n_false;
 }
 
+napi_value export_TraceLog(napi_env env, napi_callback_info info) {
+  napi_value* args = get_args(env, info, 2);
+  int logLevel = get_int_arg(args, 0, env, info);
+  char* text = get_string_arg(args, 1, env, info);
+  TraceLog(logLevel, text);
+  return undefined;
+}
+
 static napi_value Init(napi_env env, napi_value exports) {
   // not sure if there are already better imports for this
   napi_get_undefined(env, &undefined);
@@ -263,6 +271,8 @@ static napi_value Init(napi_env env, napi_value exports) {
   NAPI_CALL(env, napi_set_named_property(env, exports, "DrawFPS", fn));
   NAPI_CALL(env, napi_create_function(env, "FileExists", NAPI_AUTO_LENGTH, export_FileExists, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "FileExists", fn));
+  NAPI_CALL(env, napi_create_function(env, "TraceLog", NAPI_AUTO_LENGTH, export_TraceLog, NULL, &fn));
+  NAPI_CALL(env, napi_set_named_property(env, exports, "TraceLog", fn));
 
   return exports;
 }

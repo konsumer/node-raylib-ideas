@@ -1,10 +1,10 @@
 This is instructions for developers to update the Raylib version.
 
 - Update the `version` in package.json that you want to target. Only [Raylib tagged releases](https://github.com/raysan5/raylib/releases) can be targeted.
-- Run `npm run clean` to delete any built files
-- Run `npm run gen` to re-generate the bindings.
-- RUn `npm run compile` to compile a new version
-- Run `npm test` to test the new version
+- `npm run clean` to delete any built files
+- `npm run gen` to re-generate the bindings.
+- `npm run compile` to compile a new version
+- `npm test` to test the new version
 
 If all is working, tag for next release:
 

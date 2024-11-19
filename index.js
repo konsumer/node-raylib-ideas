@@ -1,6 +1,5 @@
 const native = require('./build/Release/node-raylib.node')
-
-// TODO: I think all these exports could go directly in node-raylib.node
+const printf = require('printf')
 
 exports.SayHello = native.SayHello
 
@@ -14,6 +13,21 @@ exports.CloseWindow = native.CloseWindow
 exports.BeginDrawing = native.BeginDrawing
 exports.DrawFPS = native.DrawFPS
 exports.FileExists = native.FileExists
+
+// vargs are annoying over NAPI, so I format here, and only use 1 string param
+exports.TraceLog = function (level, text, ...args) {
+  native.TraceLog(level, printf(text, ...args))
+}
+
+// TraceLogLevel
+exports.LOG_ALL = 0 // Display all logs
+exports.LOG_TRACE = 1 // Trace logging, intended for internal use only
+exports.LOG_DEBUG = 2 // Debug logging, used for internal debugging, it should be disabled on release builds
+exports.LOG_INFO = 3 // Info logging, used for program execution info
+exports.LOG_WARNING = 4 // Warning logging, used on recoverable failures
+exports.LOG_ERROR = 5 // Error logging, used on unrecoverable failures
+exports.LOG_FATAL = 6 // Fatal logging, used to abort program: exit(EXIT_FAILURE)
+exports.LOG_NONE = 8 // Disable logging
 
 exports.LIGHTGRAY = Object.freeze({ r: 200, g: 200, b: 200, a: 255 }) // Light Gray
 exports.GRAY = Object.freeze({ r: 130, g: 130, b: 130, a: 255 }) // Gray
