@@ -9,7 +9,7 @@ I am working on improvments around [node-raylib](https://github.com/RobLoach/nod
 ## TODO
 
 - Even though I don't really like typescript, I should use it to build the interface for otheres, and for things like enums.
-- figure out better standalone compile [maybe sea](https://nodejs.org/api/single-executable-applications.html).
+- figure out better standalone compile maybe [sea](https://nodejs.org/api/single-executable-applications.html) or [nexe-natives](https://github.com/nmarus/nexe-natives).
 - detect DRM/X on import, on pi (for simpler import) checking `DISPLAY` might be a simple way (detect "no X")
 - DRM is available on things than pi. I should test more.
 - Integrate prebuild libs & node-raylib bin into release for all platforms
