@@ -16,3 +16,4 @@ I am working on improvments around [node-raylib](https://github.com/RobLoach/nod
 - universal binaries for mac (arm64/x86-64)
 - cross build (via [toolchain](https://medium.com/@au42/the-useful-raspberrypi-cross-compile-guide-ea56054de187)) for pi, including DRM.
 - currently, objects are used for structs, but I should probly use "magic classes" and pointers to cut down on copying
+- [wasm](https://github.com/devongovett/napi-wasm?tab=readme-ov-file) would be a neat way to add browser-support (for single codebase for both)
