@@ -1,0 +1,27 @@
+{
+  "name": "raylib",
+  "version": "5.5.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest --run --globals",
+    "start": "node examples/basic.js",
+    "gen": "node tools/gen.mjs",
+    "compile": "cmake-js compile",
+    "postinstall": "node tools/postinstall.js || npm run compile",
+    "prestart": "npm run compile",
+    "pretest": "npm run compile",
+    "clean": "rm -rf build"
+  },
+  "devDependencies": {
+    "cmake-js": "latest",
+    "vitest": "latest"
+  },
+  "binary": {
+    "napi_versions": [
+      3
+    ]
+  },
+  "bin": {
+    "node-raylib": "bin/node-raylib"
+  }
+}
