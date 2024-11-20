@@ -74,12 +74,16 @@ static Color get_color_arg(napi_value* args, int argNum, napi_env env, napi_call
 
 */
 
+import { readFile  } from 'node:fs/promises'
+
+const typeNames = JSON.parse(await readFile('tools/typeNames.json', 'utf8'))
+
 export default function generateC(version, api) {
   const functionBodyOut = []
   const functionDefOut = []
 
   functionBodyOut.push(`// Function to test bindings
-napi_value RaylibSayHello(napi_env env, napi_callback_info info) {
+napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   char* name = get_string_arg(args, 0, env, info);
   free(args);
@@ -90,9 +94,43 @@ napi_value RaylibSayHello(napi_env env, napi_callback_info info) {
   return return_string(env, result);
 }`)
 
-  functionDefOut.push(`NAPI_CALL(env, napi_create_function(env, "SayHello", NAPI_AUTO_LENGTH, RaylibSayHello, NULL, &fn));
+  functionDefOut.push(`NAPI_CALL(env, napi_create_function(env, "SayHello", NAPI_AUTO_LENGTH, NodeRaylibSayHello, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "SayHello", fn));
   `)
+
+
+  for (const f of api.functions) {
+    if (f.name === 'TraceLog') {
+      continue
+    }
+    functionDefOut.push(`  NAPI_CALL(env, napi_create_function(env, "${f.name}", NAPI_AUTO_LENGTH, NodeRaylib${f.name}, NULL, &fn));
+  NAPI_CALL(env, napi_set_named_property(env, exports, "${f.name}", fn));
+    `)
+    functionBodyOut.push(`\n// ${f.description}`)
+    functionBodyOut.push(`napi_value NodeRaylib${f.name}(napi_env env, napi_callback_info info) {`)
+
+    if (f?.returnType && f.returnType !== 'void') {
+      functionBodyOut.push(`  ${f.returnType} ret;`)
+    }
+
+    const params = f.params || []
+    if (params.length) {
+      functionBodyOut.push(`  napi_value* args = get_args(env, info, ${params.length});`)
+      let i=0
+      for (const { type, name } of params) {
+         functionBodyOut.push(`  ${type} ${name} = get_${typeNames[type]}_arg(args, ${i++}, env, info)`)
+      }
+    }
+    if (!f?.returnType || f.returnType === 'void') {
+      functionBodyOut.push(`  ${f.name}(${params.map(p => p.name).join(', ')});`)
+      functionBodyOut.push(`  return n_undefined;`)
+    } else {
+      functionBodyOut.push(`  ret=${f.name}(${params.map(p => p.name).join(', ')});`)
+      functionBodyOut.push(`  return return_${typeNames[f.returnType]}(ret);`)
+    }
+    functionBodyOut.push(`}`)
+  }
+
 
   const out = [
     `// Raylib for nodejs ${version}
@@ -115,7 +153,7 @@ napi_value RaylibSayHello(napi_env env, napi_callback_info info) {
     }                                                      \\
   } while (0)
 
-static napi_value undefined;
+static napi_value n_undefined;
 static napi_value n_true;
 static napi_value n_false;
 
@@ -186,7 +224,7 @@ ${functionBodyOut.join('\n')}
 
 static napi_value Init(napi_env env, napi_value exports) {
   // not sure if there are already better imports for this
-  napi_get_undefined(env, &undefined);
+  napi_get_undefined(env, &n_undefined);
   napi_get_boolean(env, true, &n_true);
   napi_get_boolean(env, false, &n_false);
 

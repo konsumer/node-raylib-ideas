@@ -7,29 +7,5 @@ import generateC from './gen_c.mjs'
 const { version } = JSON.parse(await readFile('package.json'))
 const api = await fetch(`https://raw.githubusercontent.com/RobLoach/raylib-api/refs/tags/v${version}/raylib.json`).then((r) => r.json())
 
-// await writeFile('src/lib.c', generateC(version, api))
-
-const allTypes = new Set()
-const argTypes = new Set()
-const retTypes = new Set()
-
-for (const f of api.functions) {
-  retTypes.add(f.returnType)
-  allTypes.add(f.returnType)
-  for (const { type } of Object.values(f.params || {})) {
-    argTypes.add(type)
-    allTypes.add(type)
-  }
-}
-
-// console.log(allTypes)
-// console.log(argTypes)
-// console.log(retTypes)
-
-const map = {}
-for (const a of allTypes) {
-  if (!a.includes('void') && !a.includes('Callback')) {
-    map[a] = a.replace(/^const /, '').replace(/[* ]+$/, '_pointer')
-  }
-}
-console.log(JSON.stringify(map, null, 2))
+await writeFile('src/lib.c', generateC(version, api))
+// console.log(generateC(version, api))
