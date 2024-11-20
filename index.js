@@ -345,17 +345,8 @@ exports.MemRealloc=native.MemRealloc
 // Internal memory free
 exports.MemFree=native.MemFree
 
-// Set custom trace log
-exports.SetTraceLogCallback=native.SetTraceLogCallback
-
-// Set custom file binary data loader
-exports.SetLoadFileDataCallback=native.SetLoadFileDataCallback
-
 // Set custom file binary data saver
 exports.SetSaveFileDataCallback=native.SetSaveFileDataCallback
-
-// Set custom file text data loader
-exports.SetLoadFileTextCallback=native.SetLoadFileTextCallback
 
 // Set custom file text data saver
 exports.SetSaveFileTextCallback=native.SetSaveFileTextCallback
@@ -1736,21 +1727,6 @@ exports.SetAudioStreamPan=native.SetAudioStreamPan
 
 // Default size for new audio streams
 exports.SetAudioStreamBufferSizeDefault=native.SetAudioStreamBufferSizeDefault
-
-// Audio thread callback to request new data
-exports.SetAudioStreamCallback=native.SetAudioStreamCallback
-
-// Attach audio stream processor to stream, receives the samples as 'float'
-exports.AttachAudioStreamProcessor=native.AttachAudioStreamProcessor
-
-// Detach audio stream processor from stream
-exports.DetachAudioStreamProcessor=native.DetachAudioStreamProcessor
-
-// Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
-exports.AttachAudioMixedProcessor=native.AttachAudioMixedProcessor
-
-// Detach audio stream processor from the entire audio pipeline
-exports.DetachAudioMixedProcessor=native.DetachAudioMixedProcessor
 
 // ConfigFlags: System/Window config flags
 exports.FLAG_VSYNC_HINT=64 // Set to try enabling V-Sync on GPU

@@ -1,7 +1,17 @@
 const edgecaseFunctions = [
   // these use text-formatting in js
   'TextFormat',
-  'TraceLog'
+  'TraceLog',
+
+  // need to figure out callbacks
+  'AttachAudioMixedProcessor',
+  'AttachAudioStreamProcessor',
+  'DetachAudioMixedProcessor',
+  'DetachAudioStreamProcessor',
+  'SetAudioStreamCallback',
+  'SetLoadFileDataCallback',
+  'SetLoadFileTextCallback',
+  'SetTraceLogCallback'
 ]
 
 const rColor = /([0-9]+)/g
