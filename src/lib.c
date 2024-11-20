@@ -36,54 +36,52 @@ static napi_value* get_args(napi_env env, napi_callback_info info, size_t expect
 }
 
 // Get a single string argument
-static char* get_string_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
-  if (args == NULL) return NULL;
-  napi_valuetype valuetype;
-  napi_status status = napi_typeof(env, args[argNum], &valuetype);
-  if (status != napi_ok || valuetype != napi_string) {
-    // napi_throw_type_error(env, NULL, "String expected");
-    return NULL;
-  }
-  char* str = (char*)malloc(1024);  // Or whatever reasonable size you expect
-  size_t result;
-  status = napi_get_value_string_utf8(env, args[argNum], str, 1024, &result);
-  if (status != napi_ok) {
-    free(str);
-    // napi_throw_error(env, NULL, "Failed to get string");
-    return NULL;
-  }
-  return str;
-}
-
-// Get a single int argument
-static int get_int_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
-  if (args == NULL) return 0;  // Return 0 as default error value
-
-  napi_valuetype valuetype;
-  napi_status status = napi_typeof(env, args[argNum], &valuetype);
-  if (status != napi_ok || valuetype != napi_number) {
-    // napi_throw_type_error(env, NULL, "Number expected");
-    return 0;
+  static char* get_string_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
+    if (args == NULL) return NULL;
+    napi_valuetype valuetype;
+    napi_status status = napi_typeof(env, args[argNum], &valuetype);
+    if (status != napi_ok || valuetype != napi_string) {
+      // napi_throw_type_error(env, NULL, "String expected");
+      return NULL;
+    }
+    char* str = (char*)malloc(1024);  // Or whatever reasonable size you expect
+    size_t result;
+    status = napi_get_value_string_utf8(env, args[argNum], str, 1024, &result);
+    if (status != napi_ok) {
+      free(str);
+      // napi_throw_error(env, NULL, "Failed to get string");
+      return NULL;
+    }
+    return str;
   }
 
-  int value;
-  status = napi_get_value_int32(env, args[argNum], &value);
-  if (status != napi_ok) {
-    // napi_throw_error(env, NULL, "Failed to get integer");
-    return 0;
+  // Get a single int argument
+  static int get_int_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
+    if (args == NULL) return 0;  // Return 0 as default error value
+
+    napi_valuetype valuetype;
+    napi_status status = napi_typeof(env, args[argNum], &valuetype);
+    if (status != napi_ok || valuetype != napi_number) {
+      // napi_throw_type_error(env, NULL, "Number expected");
+      return 0;
+    }
+
+    int value;
+    status = napi_get_value_int32(env, args[argNum], &value);
+    if (status != napi_ok) {
+      // napi_throw_error(env, NULL, "Failed to get integer");
+      return 0;
+    }
+
+    return value;
   }
 
-  return value;
-}
-
-// Return string to JavaScript
-static napi_value return_string(napi_env env, const char* str) {
-  napi_value return_value;
-  NAPI_CALL(env, napi_create_string_utf8(env, str, strlen(str), &return_value));
-  return return_value;
-}
-
-
+  // Return string to JavaScript
+  static napi_value return_string(napi_env env, const char* str) {
+    napi_value return_value;
+    NAPI_CALL(env, napi_create_string_utf8(env, str, strlen(str), &return_value));
+    return return_value;
+  }
 
 // Function to test bindings
 napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
@@ -4445,17 +4443,6 @@ napi_value NodeRaylibTextLength(napi_env env, napi_callback_info info) {
   return return_uint(ret);
 }
 
-// Text formatting with variables (sprintf() style)
-napi_value NodeRaylibTextFormat(napi_env env, napi_callback_info info) {
-  const char * ret;
-  napi_value* args = get_args(env, info, 2);
-  const char * text = get_string_arg(args, 0, env, info)
-  ... args = get_undefined_arg(args, 1, env, info)
-  free(args);
-  ret=TextFormat(text, args);
-  return return_string(ret);
-}
-
 // Get a piece of a text string
 napi_value NodeRaylibTextSubtext(napi_env env, napi_callback_info info) {
   const char * ret;
@@ -7409,9 +7396,6 @@ static napi_value Init(napi_env env, napi_value exports) {
     
   NAPI_CALL(env, napi_create_function(env, "TextLength", NAPI_AUTO_LENGTH, NodeRaylibTextLength, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "TextLength", fn));
-    
-  NAPI_CALL(env, napi_create_function(env, "TextFormat", NAPI_AUTO_LENGTH, NodeRaylibTextFormat, NULL, &fn));
-  NAPI_CALL(env, napi_set_named_property(env, exports, "TextFormat", fn));
     
   NAPI_CALL(env, napi_create_function(env, "TextSubtext", NAPI_AUTO_LENGTH, NodeRaylibTextSubtext, NULL, &fn));
   NAPI_CALL(env, napi_set_named_property(env, exports, "TextSubtext", fn));

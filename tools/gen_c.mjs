@@ -1,10 +1,66 @@
-import { readFile  } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 
 const typeNames = JSON.parse(await readFile('tools/typeNames.json', 'utf8'))
+
+const edgecaseFunctions = [
+  // these use text-formatting in js
+  'TextFormat',
+  'TraceLog'
+]
 
 export default function generateC(version, api) {
   const functionBodyOut = []
   const functionDefOut = []
+
+  const typeHelpers = [
+    `// Get a single string argument
+  static char* get_string_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
+    if (args == NULL) return NULL;
+    napi_valuetype valuetype;
+    napi_status status = napi_typeof(env, args[argNum], &valuetype);
+    if (status != napi_ok || valuetype != napi_string) {
+      // napi_throw_type_error(env, NULL, "String expected");
+      return NULL;
+    }
+    char* str = (char*)malloc(1024);  // Or whatever reasonable size you expect
+    size_t result;
+    status = napi_get_value_string_utf8(env, args[argNum], str, 1024, &result);
+    if (status != napi_ok) {
+      free(str);
+      // napi_throw_error(env, NULL, "Failed to get string");
+      return NULL;
+    }
+    return str;
+  }
+
+  // Get a single int argument
+  static int get_int_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
+    if (args == NULL) return 0;  // Return 0 as default error value
+
+    napi_valuetype valuetype;
+    napi_status status = napi_typeof(env, args[argNum], &valuetype);
+    if (status != napi_ok || valuetype != napi_number) {
+      // napi_throw_type_error(env, NULL, "Number expected");
+      return 0;
+    }
+
+    int value;
+    status = napi_get_value_int32(env, args[argNum], &value);
+    if (status != napi_ok) {
+      // napi_throw_error(env, NULL, "Failed to get integer");
+      return 0;
+    }
+
+    return value;
+  }
+
+  // Return string to JavaScript
+  static napi_value return_string(napi_env env, const char* str) {
+    napi_value return_value;
+    NAPI_CALL(env, napi_create_string_utf8(env, str, strlen(str), &return_value));
+    return return_value;
+  }`
+  ]
 
   functionBodyOut.push(`// Function to test bindings
 napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
@@ -22,9 +78,8 @@ napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
   NAPI_CALL(env, napi_set_named_property(env, exports, "SayHello", fn));
   `)
 
-
   for (const f of api.functions) {
-    if (f.name === 'TraceLog') {
+    if (edgecaseFunctions.includes(f.name)) {
       continue
     }
     functionDefOut.push(`  NAPI_CALL(env, napi_create_function(env, "${f.name}", NAPI_AUTO_LENGTH, NodeRaylib${f.name}, NULL, &fn));
@@ -40,22 +95,21 @@ napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
     const params = f.params || []
     if (params.length) {
       functionBodyOut.push(`  napi_value* args = get_args(env, info, ${params.length});`)
-      let i=0
+      let i = 0
       for (const { type, name } of params) {
-         functionBodyOut.push(`  ${type} ${name} = get_${typeNames[type]}_arg(args, ${i++}, env, info)`)
+        functionBodyOut.push(`  ${type} ${name} = get_${typeNames[type]}_arg(args, ${i++}, env, info)`)
       }
       functionBodyOut.push('  free(args);')
     }
     if (!f?.returnType || f.returnType === 'void') {
-      functionBodyOut.push(`  ${f.name}(${params.map(p => p.name).join(', ')});`)
+      functionBodyOut.push(`  ${f.name}(${params.map((p) => p.name).join(', ')});`)
       functionBodyOut.push(`  return n_undefined;`)
     } else {
-      functionBodyOut.push(`  ret=${f.name}(${params.map(p => p.name).join(', ')});`)
+      functionBodyOut.push(`  ret=${f.name}(${params.map((p) => p.name).join(', ')});`)
       functionBodyOut.push(`  return return_${typeNames[f.returnType]}(ret);`)
     }
     functionBodyOut.push(`}`)
   }
-
 
   const out = [
     `// Raylib for nodejs ${version}
@@ -95,55 +149,7 @@ static napi_value* get_args(napi_env env, napi_callback_info info, size_t expect
   return args;
 }
 
-// Get a single string argument
-static char* get_string_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
-  if (args == NULL) return NULL;
-  napi_valuetype valuetype;
-  napi_status status = napi_typeof(env, args[argNum], &valuetype);
-  if (status != napi_ok || valuetype != napi_string) {
-    // napi_throw_type_error(env, NULL, "String expected");
-    return NULL;
-  }
-  char* str = (char*)malloc(1024);  // Or whatever reasonable size you expect
-  size_t result;
-  status = napi_get_value_string_utf8(env, args[argNum], str, 1024, &result);
-  if (status != napi_ok) {
-    free(str);
-    // napi_throw_error(env, NULL, "Failed to get string");
-    return NULL;
-  }
-  return str;
-}
-
-// Get a single int argument
-static int get_int_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
-  if (args == NULL) return 0;  // Return 0 as default error value
-
-  napi_valuetype valuetype;
-  napi_status status = napi_typeof(env, args[argNum], &valuetype);
-  if (status != napi_ok || valuetype != napi_number) {
-    // napi_throw_type_error(env, NULL, "Number expected");
-    return 0;
-  }
-
-  int value;
-  status = napi_get_value_int32(env, args[argNum], &value);
-  if (status != napi_ok) {
-    // napi_throw_error(env, NULL, "Failed to get integer");
-    return 0;
-  }
-
-  return value;
-}
-
-// Return string to JavaScript
-static napi_value return_string(napi_env env, const char* str) {
-  napi_value return_value;
-  NAPI_CALL(env, napi_create_string_utf8(env, str, strlen(str), &return_value));
-  return return_value;
-}
-
-
+${typeHelpers.join('\n')}
 
 ${functionBodyOut.join('\n')}
 

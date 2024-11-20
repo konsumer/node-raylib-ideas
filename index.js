@@ -1,5 +1,5 @@
 const native = require('./build/Release/node-raylib.node')
-const printf = require('printf')
+const { vsprintf } = require('./src/vsprintf.js')
 
 exports.SayHello = native.SayHello
 
@@ -14,9 +14,13 @@ exports.BeginDrawing = native.BeginDrawing
 exports.DrawFPS = native.DrawFPS
 exports.FileExists = native.FileExists
 
-// vargs are annoying over NAPI, so I format here, and only use 1 string param
+// vargs are a bit annoying over NAPI, so I format here, and only use 1 string param
+// Users should probly use template-strings anyway in JS...
 exports.TraceLog = function (level, text, ...args) {
-  native.TraceLog(level, printf(text, ...args))
+  native.TraceLog(level, vsprintf(text, args))
+}
+exports.TextFormat = function (text, ...args) {
+  return vsprintf(text, args)
 }
 
 // TraceLogLevel

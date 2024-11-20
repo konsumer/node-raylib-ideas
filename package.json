@@ -12,7 +12,8 @@
     "clean": "rm -rf build"
   },
   "devDependencies": {
-    "cmake-js": "latest"
+    "cmake-js": "latest",
+    "glob": "^10.4.5"
   },
   "binary": {
     "napi_versions": [
@@ -23,7 +24,6 @@
     "node-raylib": "bin/node-raylib"
   },
   "dependencies": {
-    "module-alias": "^2.2.3",
-    "printf": "^0.6.1"
+    "module-alias": "^2.2.3"
   }
 }
