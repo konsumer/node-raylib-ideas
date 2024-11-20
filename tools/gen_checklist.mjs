@@ -1,4 +1,5 @@
 // this will generate a checklist of the API for GH issue
+
 import { readFile } from 'node:fs/promises'
 import * as implemented from '../index.js'
 import { glob } from 'glob'
@@ -13,7 +14,8 @@ const naturalCollator = new Intl.Collator(undefined, { numeric: true, sensitivit
 const sortByName = (a, b) => naturalCollator.compare(a.name, b.name)
 const functions = api.functions.sort(sortByName)
 
-const tested = []
+const tested = ['FileExists'] // this is in bin/node-raylib
+
 for (const fn of await glob('examples/**/*.js')) {
   const s = await readFile(fn, 'utf8')
   for (const f of functions) {
