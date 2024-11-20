@@ -62,13 +62,22 @@ exports.TextFormat = function (text, ...args) {
   }
 
   for (const d of api.defines) {
-    if (d.type === 'MACRO') {
+    if (d.type === 'GUARD') {
       continue
     }
-    if (d.type === 'COLOR') {
+    if (d.type === 'MACRO') {
+      continue
+    } else if (d.type === 'COLOR') {
       out.push(`exports.${d.name}=${getColor(d.value)} // ${d.description}`)
+    } else if (d.type === 'STRING') {
+      out.push(`exports.${d.name}='${d.value}'`)
+    } else if (d.type === 'INT' || d.type === 'FLOAT') {
+      out.push(`exports.${d.name}=${d.value}`)
     }
   }
+
+  out.push('exports.DEG2RAD=exports.PI/180')
+  out.push('exports.RAD2DEG=180/exports.PI')
 
   out.push('')
 

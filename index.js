@@ -2070,6 +2070,11 @@ exports.NPATCH_NINE_PATCH=0 // Npatch layout: 3x3 tiles
 exports.NPATCH_THREE_PATCH_VERTICAL=1 // Npatch layout: 1x3 tiles
 exports.NPATCH_THREE_PATCH_HORIZONTAL=2 // Npatch layout: 3x1 tiles
 
+exports.RAYLIB_VERSION_MAJOR=5
+exports.RAYLIB_VERSION_MINOR=5
+exports.RAYLIB_VERSION_PATCH=0
+exports.RAYLIB_VERSION='5.5'
+exports.PI=3.141592653589793
 exports.LIGHTGRAY={ r:200, g:200, b:200, a:255 } // Light Gray
 exports.GRAY={ r:130, g:130, b:130, a:255 } // Gray
 exports.DARKGRAY={ r:80, g:80, b:80, a:255 } // Dark Gray
@@ -2096,6 +2101,8 @@ exports.BLACK={ r:0, g:0, b:0, a:255 } // Black
 exports.BLANK={ r:0, g:0, b:0, a:0 } // Blank (Transparent)
 exports.MAGENTA={ r:255, g:0, b:255, a:255 } // Magenta
 exports.RAYWHITE={ r:245, g:245, b:245, a:255 } // My own White (raylib logo)
+exports.DEG2RAD=exports.PI/180
+exports.RAD2DEG=180/exports.PI
 
 exports.Quaternion=exports.Vector4 // Quaternion, 4 components (Vector4 alias)
 exports.Texture2D=exports.Texture // Texture2D, same as Texture
