@@ -14,8 +14,43 @@ const edgecaseFunctions = [
   'SetTraceLogCallback'
 ]
 
-const rColor = /([0-9]+)/g
+// get the byte-size of a type
+function getSize(api, type) {
+  const mappedStructs = api.structs.reduce((a, c) => ({ ...a, [c.name]: c }), {})
 
+  // pointers are 32bit
+  if (type.includes('*')) {
+    return 4
+  }
+
+  // arrays are size * typeSize
+  if (type.includes('[')) {
+    const t = type.split('[')
+    return getSize(api, t[0]) * t[1].split(']')[0]
+  }
+
+  // structs are size of all fields addded
+  if (mappedStructs[type]) {
+    return mappedStructs[type].fields.reduce((a, c) => a + getSize(api, c.type), 0)
+  }
+
+  // the rest (atoms) have a size
+  switch (type) {
+    case 'bool':
+    case 'char':
+    case 'unsigned char':
+      return 1
+    case 'int':
+    case 'unsigned int':
+    case 'float':
+      return 4
+    default:
+      console.log(`SIZE? ${type}`)
+      return 0
+  }
+}
+
+const rColor = /([0-9]+)/g
 const getColor = (s) => {
   let o = []
   for (const n of s.matchAll(rColor)) {
@@ -80,6 +115,36 @@ exports.TextFormat = function (text, ...args) {
   out.push('exports.RAD2DEG=180/exports.PI')
 
   out.push('')
+
+  let code = ''
+  for (const s of api.structs) {
+    s.fields = s.fields || []
+    const size = s.fields.reduce((a, c) => a + getSize(api, c.type), 0)
+    code += `  // ${s.description}
+    exports.${s.name} = class ${s.name} {
+      constructor(init = {}, _address) {
+        this._size = ${size}
+        this._address = _address || native.malloc(this._size)
+  `
+
+    let offset = 0
+    for (const f of s.fields) {
+      const t = mappedStructs[f.type.replace(' ', '').replace('*', '')]
+      if (!t) {
+        code += `\n      this.${f.name} = init.${f.name} || ${defaultValue(f.type)}`
+      } else {
+        code += `\n      this.${f.name} = new exports.${t.name}(init.${f.name} || {}, this._address + ${offset})`
+      }
+      offset += getSize(f.type)
+    }
+
+    code += `
+      }
+      ${outputGetters(s)}
+    }\n\n`
+  }
+
+  out.push(code)
 
   for (const a of api.aliases) {
     out.push(`exports.${a.name}=exports.${a.type} // ${a.description}`)
