@@ -25,7 +25,7 @@ for (const fn of await glob('examples/**/*.js')) {
   }
 }
 
-console.log(`Raylib ${version} Checklist\n`)
+console.log(`This is a list of the remaining API functions for Raylib ${version}.\n`)
 
 function outPutFunction(f) {
   return `- [${existing.includes(f.name) ? 'X' : ' '}] \`${f.name}(${(f.params || []).map((p) => `${p.type} ${p.name}`).join(', ')})\``
