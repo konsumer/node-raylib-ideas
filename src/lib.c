@@ -103,6 +103,7 @@ napi_value NodeRaylibInitWindow(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   const char * title = get_string_arg(args, 2, env, info)
+  free(args);
   InitWindow(width, height, title);
   return n_undefined;
 }
@@ -174,6 +175,7 @@ napi_value NodeRaylibIsWindowState(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   unsigned int flag = get_uint_arg(args, 0, env, info)
+  free(args);
   ret=IsWindowState(flag);
   return return_bool(ret);
 }
@@ -182,6 +184,7 @@ napi_value NodeRaylibIsWindowState(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetWindowState(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned int flags = get_uint_arg(args, 0, env, info)
+  free(args);
   SetWindowState(flags);
   return n_undefined;
 }
@@ -190,6 +193,7 @@ napi_value NodeRaylibSetWindowState(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibClearWindowState(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned int flags = get_uint_arg(args, 0, env, info)
+  free(args);
   ClearWindowState(flags);
   return n_undefined;
 }
@@ -228,6 +232,7 @@ napi_value NodeRaylibRestoreWindow(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetWindowIcon(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   SetWindowIcon(image);
   return n_undefined;
 }
@@ -237,6 +242,7 @@ napi_value NodeRaylibSetWindowIcons(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * images = get_Image_pointer_arg(args, 0, env, info)
   int count = get_int_arg(args, 1, env, info)
+  free(args);
   SetWindowIcons(images, count);
   return n_undefined;
 }
@@ -245,6 +251,7 @@ napi_value NodeRaylibSetWindowIcons(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetWindowTitle(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   const char * title = get_string_arg(args, 0, env, info)
+  free(args);
   SetWindowTitle(title);
   return n_undefined;
 }
@@ -254,6 +261,7 @@ napi_value NodeRaylibSetWindowPosition(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int x = get_int_arg(args, 0, env, info)
   int y = get_int_arg(args, 1, env, info)
+  free(args);
   SetWindowPosition(x, y);
   return n_undefined;
 }
@@ -262,6 +270,7 @@ napi_value NodeRaylibSetWindowPosition(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetWindowMonitor(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   SetWindowMonitor(monitor);
   return n_undefined;
 }
@@ -271,6 +280,7 @@ napi_value NodeRaylibSetWindowMinSize(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
+  free(args);
   SetWindowMinSize(width, height);
   return n_undefined;
 }
@@ -280,6 +290,7 @@ napi_value NodeRaylibSetWindowMaxSize(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
+  free(args);
   SetWindowMaxSize(width, height);
   return n_undefined;
 }
@@ -289,6 +300,7 @@ napi_value NodeRaylibSetWindowSize(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
+  free(args);
   SetWindowSize(width, height);
   return n_undefined;
 }
@@ -297,6 +309,7 @@ napi_value NodeRaylibSetWindowSize(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetWindowOpacity(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   float opacity = get_float_arg(args, 0, env, info)
+  free(args);
   SetWindowOpacity(opacity);
   return n_undefined;
 }
@@ -361,6 +374,7 @@ napi_value NodeRaylibGetMonitorPosition(napi_env env, napi_callback_info info) {
   Vector2 ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorPosition(monitor);
   return return_Vector2(ret);
 }
@@ -370,6 +384,7 @@ napi_value NodeRaylibGetMonitorWidth(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorWidth(monitor);
   return return_int(ret);
 }
@@ -379,6 +394,7 @@ napi_value NodeRaylibGetMonitorHeight(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorHeight(monitor);
   return return_int(ret);
 }
@@ -388,6 +404,7 @@ napi_value NodeRaylibGetMonitorPhysicalWidth(napi_env env, napi_callback_info in
   int ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorPhysicalWidth(monitor);
   return return_int(ret);
 }
@@ -397,6 +414,7 @@ napi_value NodeRaylibGetMonitorPhysicalHeight(napi_env env, napi_callback_info i
   int ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorPhysicalHeight(monitor);
   return return_int(ret);
 }
@@ -406,6 +424,7 @@ napi_value NodeRaylibGetMonitorRefreshRate(napi_env env, napi_callback_info info
   int ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorRefreshRate(monitor);
   return return_int(ret);
 }
@@ -429,6 +448,7 @@ napi_value NodeRaylibGetMonitorName(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   int monitor = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetMonitorName(monitor);
   return return_string(ret);
 }
@@ -437,6 +457,7 @@ napi_value NodeRaylibGetMonitorName(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetClipboardText(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   SetClipboardText(text);
   return n_undefined;
 }
@@ -509,6 +530,7 @@ napi_value NodeRaylibIsCursorOnScreen(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibClearBackground(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Color color = get_Color_arg(args, 0, env, info)
+  free(args);
   ClearBackground(color);
   return n_undefined;
 }
@@ -529,6 +551,7 @@ napi_value NodeRaylibEndDrawing(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginMode2D(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Camera2D camera = get_Camera2D_arg(args, 0, env, info)
+  free(args);
   BeginMode2D(camera);
   return n_undefined;
 }
@@ -543,6 +566,7 @@ napi_value NodeRaylibEndMode2D(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginMode3D(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Camera3D camera = get_Camera3D_arg(args, 0, env, info)
+  free(args);
   BeginMode3D(camera);
   return n_undefined;
 }
@@ -557,6 +581,7 @@ napi_value NodeRaylibEndMode3D(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginTextureMode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   RenderTexture2D target = get_RenderTexture2D_arg(args, 0, env, info)
+  free(args);
   BeginTextureMode(target);
   return n_undefined;
 }
@@ -571,6 +596,7 @@ napi_value NodeRaylibEndTextureMode(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginShaderMode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Shader shader = get_Shader_arg(args, 0, env, info)
+  free(args);
   BeginShaderMode(shader);
   return n_undefined;
 }
@@ -585,6 +611,7 @@ napi_value NodeRaylibEndShaderMode(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginBlendMode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int mode = get_int_arg(args, 0, env, info)
+  free(args);
   BeginBlendMode(mode);
   return n_undefined;
 }
@@ -602,6 +629,7 @@ napi_value NodeRaylibBeginScissorMode(napi_env env, napi_callback_info info) {
   int y = get_int_arg(args, 1, env, info)
   int width = get_int_arg(args, 2, env, info)
   int height = get_int_arg(args, 3, env, info)
+  free(args);
   BeginScissorMode(x, y, width, height);
   return n_undefined;
 }
@@ -616,6 +644,7 @@ napi_value NodeRaylibEndScissorMode(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibBeginVrStereoMode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   VrStereoConfig config = get_VrStereoConfig_arg(args, 0, env, info)
+  free(args);
   BeginVrStereoMode(config);
   return n_undefined;
 }
@@ -631,6 +660,7 @@ napi_value NodeRaylibLoadVrStereoConfig(napi_env env, napi_callback_info info) {
   VrStereoConfig ret;
   napi_value* args = get_args(env, info, 1);
   VrDeviceInfo device = get_VrDeviceInfo_arg(args, 0, env, info)
+  free(args);
   ret=LoadVrStereoConfig(device);
   return return_VrStereoConfig(ret);
 }
@@ -639,6 +669,7 @@ napi_value NodeRaylibLoadVrStereoConfig(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadVrStereoConfig(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   VrStereoConfig config = get_VrStereoConfig_arg(args, 0, env, info)
+  free(args);
   UnloadVrStereoConfig(config);
   return n_undefined;
 }
@@ -649,6 +680,7 @@ napi_value NodeRaylibLoadShader(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * vsFileName = get_string_arg(args, 0, env, info)
   const char * fsFileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=LoadShader(vsFileName, fsFileName);
   return return_Shader(ret);
 }
@@ -659,6 +691,7 @@ napi_value NodeRaylibLoadShaderFromMemory(napi_env env, napi_callback_info info)
   napi_value* args = get_args(env, info, 2);
   const char * vsCode = get_string_arg(args, 0, env, info)
   const char * fsCode = get_string_arg(args, 1, env, info)
+  free(args);
   ret=LoadShaderFromMemory(vsCode, fsCode);
   return return_Shader(ret);
 }
@@ -668,6 +701,7 @@ napi_value NodeRaylibIsShaderValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Shader shader = get_Shader_arg(args, 0, env, info)
+  free(args);
   ret=IsShaderValid(shader);
   return return_bool(ret);
 }
@@ -678,6 +712,7 @@ napi_value NodeRaylibGetShaderLocation(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Shader shader = get_Shader_arg(args, 0, env, info)
   const char * uniformName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=GetShaderLocation(shader, uniformName);
   return return_int(ret);
 }
@@ -688,6 +723,7 @@ napi_value NodeRaylibGetShaderLocationAttrib(napi_env env, napi_callback_info in
   napi_value* args = get_args(env, info, 2);
   Shader shader = get_Shader_arg(args, 0, env, info)
   const char * attribName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=GetShaderLocationAttrib(shader, attribName);
   return return_int(ret);
 }
@@ -699,6 +735,7 @@ napi_value NodeRaylibSetShaderValue(napi_env env, napi_callback_info info) {
   int locIndex = get_int_arg(args, 1, env, info)
   const void * value = get_undefined_arg(args, 2, env, info)
   int uniformType = get_int_arg(args, 3, env, info)
+  free(args);
   SetShaderValue(shader, locIndex, value, uniformType);
   return n_undefined;
 }
@@ -711,6 +748,7 @@ napi_value NodeRaylibSetShaderValueV(napi_env env, napi_callback_info info) {
   const void * value = get_undefined_arg(args, 2, env, info)
   int uniformType = get_int_arg(args, 3, env, info)
   int count = get_int_arg(args, 4, env, info)
+  free(args);
   SetShaderValueV(shader, locIndex, value, uniformType, count);
   return n_undefined;
 }
@@ -721,6 +759,7 @@ napi_value NodeRaylibSetShaderValueMatrix(napi_env env, napi_callback_info info)
   Shader shader = get_Shader_arg(args, 0, env, info)
   int locIndex = get_int_arg(args, 1, env, info)
   Matrix mat = get_Matrix_arg(args, 2, env, info)
+  free(args);
   SetShaderValueMatrix(shader, locIndex, mat);
   return n_undefined;
 }
@@ -731,6 +770,7 @@ napi_value NodeRaylibSetShaderValueTexture(napi_env env, napi_callback_info info
   Shader shader = get_Shader_arg(args, 0, env, info)
   int locIndex = get_int_arg(args, 1, env, info)
   Texture2D texture = get_Texture2D_arg(args, 2, env, info)
+  free(args);
   SetShaderValueTexture(shader, locIndex, texture);
   return n_undefined;
 }
@@ -739,6 +779,7 @@ napi_value NodeRaylibSetShaderValueTexture(napi_env env, napi_callback_info info
 napi_value NodeRaylibUnloadShader(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Shader shader = get_Shader_arg(args, 0, env, info)
+  free(args);
   UnloadShader(shader);
   return n_undefined;
 }
@@ -749,6 +790,7 @@ napi_value NodeRaylibGetScreenToWorldRay(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   Vector2 position = get_Vector2_arg(args, 0, env, info)
   Camera camera = get_Camera_arg(args, 1, env, info)
+  free(args);
   ret=GetScreenToWorldRay(position, camera);
   return return_Ray(ret);
 }
@@ -761,6 +803,7 @@ napi_value NodeRaylibGetScreenToWorldRayEx(napi_env env, napi_callback_info info
   Camera camera = get_Camera_arg(args, 1, env, info)
   int width = get_int_arg(args, 2, env, info)
   int height = get_int_arg(args, 3, env, info)
+  free(args);
   ret=GetScreenToWorldRayEx(position, camera, width, height);
   return return_Ray(ret);
 }
@@ -771,6 +814,7 @@ napi_value NodeRaylibGetWorldToScreen(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Vector3 position = get_Vector3_arg(args, 0, env, info)
   Camera camera = get_Camera_arg(args, 1, env, info)
+  free(args);
   ret=GetWorldToScreen(position, camera);
   return return_Vector2(ret);
 }
@@ -783,6 +827,7 @@ napi_value NodeRaylibGetWorldToScreenEx(napi_env env, napi_callback_info info) {
   Camera camera = get_Camera_arg(args, 1, env, info)
   int width = get_int_arg(args, 2, env, info)
   int height = get_int_arg(args, 3, env, info)
+  free(args);
   ret=GetWorldToScreenEx(position, camera, width, height);
   return return_Vector2(ret);
 }
@@ -793,6 +838,7 @@ napi_value NodeRaylibGetWorldToScreen2D(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Vector2 position = get_Vector2_arg(args, 0, env, info)
   Camera2D camera = get_Camera2D_arg(args, 1, env, info)
+  free(args);
   ret=GetWorldToScreen2D(position, camera);
   return return_Vector2(ret);
 }
@@ -803,6 +849,7 @@ napi_value NodeRaylibGetScreenToWorld2D(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Vector2 position = get_Vector2_arg(args, 0, env, info)
   Camera2D camera = get_Camera2D_arg(args, 1, env, info)
+  free(args);
   ret=GetScreenToWorld2D(position, camera);
   return return_Vector2(ret);
 }
@@ -812,6 +859,7 @@ napi_value NodeRaylibGetCameraMatrix(napi_env env, napi_callback_info info) {
   Matrix ret;
   napi_value* args = get_args(env, info, 1);
   Camera camera = get_Camera_arg(args, 0, env, info)
+  free(args);
   ret=GetCameraMatrix(camera);
   return return_Matrix(ret);
 }
@@ -821,6 +869,7 @@ napi_value NodeRaylibGetCameraMatrix2D(napi_env env, napi_callback_info info) {
   Matrix ret;
   napi_value* args = get_args(env, info, 1);
   Camera2D camera = get_Camera2D_arg(args, 0, env, info)
+  free(args);
   ret=GetCameraMatrix2D(camera);
   return return_Matrix(ret);
 }
@@ -829,6 +878,7 @@ napi_value NodeRaylibGetCameraMatrix2D(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetTargetFPS(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int fps = get_int_arg(args, 0, env, info)
+  free(args);
   SetTargetFPS(fps);
   return n_undefined;
 }
@@ -870,6 +920,7 @@ napi_value NodeRaylibPollInputEvents(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibWaitTime(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   double seconds = get_double_arg(args, 0, env, info)
+  free(args);
   WaitTime(seconds);
   return n_undefined;
 }
@@ -878,6 +929,7 @@ napi_value NodeRaylibWaitTime(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetRandomSeed(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned int seed = get_uint_arg(args, 0, env, info)
+  free(args);
   SetRandomSeed(seed);
   return n_undefined;
 }
@@ -888,6 +940,7 @@ napi_value NodeRaylibGetRandomValue(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int min = get_int_arg(args, 0, env, info)
   int max = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetRandomValue(min, max);
   return return_int(ret);
 }
@@ -899,6 +952,7 @@ napi_value NodeRaylibLoadRandomSequence(napi_env env, napi_callback_info info) {
   unsigned int count = get_uint_arg(args, 0, env, info)
   int min = get_int_arg(args, 1, env, info)
   int max = get_int_arg(args, 2, env, info)
+  free(args);
   ret=LoadRandomSequence(count, min, max);
   return return_int_pointer(ret);
 }
@@ -907,6 +961,7 @@ napi_value NodeRaylibLoadRandomSequence(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadRandomSequence(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int * sequence = get_int_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadRandomSequence(sequence);
   return n_undefined;
 }
@@ -915,6 +970,7 @@ napi_value NodeRaylibUnloadRandomSequence(napi_env env, napi_callback_info info)
 napi_value NodeRaylibTakeScreenshot(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   TakeScreenshot(fileName);
   return n_undefined;
 }
@@ -923,6 +979,7 @@ napi_value NodeRaylibTakeScreenshot(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetConfigFlags(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned int flags = get_uint_arg(args, 0, env, info)
+  free(args);
   SetConfigFlags(flags);
   return n_undefined;
 }
@@ -931,6 +988,7 @@ napi_value NodeRaylibSetConfigFlags(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibOpenURL(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   const char * url = get_string_arg(args, 0, env, info)
+  free(args);
   OpenURL(url);
   return n_undefined;
 }
@@ -939,6 +997,7 @@ napi_value NodeRaylibOpenURL(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetTraceLogLevel(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int logLevel = get_int_arg(args, 0, env, info)
+  free(args);
   SetTraceLogLevel(logLevel);
   return n_undefined;
 }
@@ -948,6 +1007,7 @@ napi_value NodeRaylibMemAlloc(napi_env env, napi_callback_info info) {
   void * ret;
   napi_value* args = get_args(env, info, 1);
   unsigned int size = get_uint_arg(args, 0, env, info)
+  free(args);
   ret=MemAlloc(size);
   return return_undefined(ret);
 }
@@ -958,6 +1018,7 @@ napi_value NodeRaylibMemRealloc(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   void * ptr = get_undefined_arg(args, 0, env, info)
   unsigned int size = get_uint_arg(args, 1, env, info)
+  free(args);
   ret=MemRealloc(ptr, size);
   return return_undefined(ret);
 }
@@ -966,6 +1027,7 @@ napi_value NodeRaylibMemRealloc(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibMemFree(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   void * ptr = get_undefined_arg(args, 0, env, info)
+  free(args);
   MemFree(ptr);
   return n_undefined;
 }
@@ -974,6 +1036,7 @@ napi_value NodeRaylibMemFree(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetTraceLogCallback(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   TraceLogCallback callback = get_undefined_arg(args, 0, env, info)
+  free(args);
   SetTraceLogCallback(callback);
   return n_undefined;
 }
@@ -982,6 +1045,7 @@ napi_value NodeRaylibSetTraceLogCallback(napi_env env, napi_callback_info info) 
 napi_value NodeRaylibSetLoadFileDataCallback(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   LoadFileDataCallback callback = get_undefined_arg(args, 0, env, info)
+  free(args);
   SetLoadFileDataCallback(callback);
   return n_undefined;
 }
@@ -990,6 +1054,7 @@ napi_value NodeRaylibSetLoadFileDataCallback(napi_env env, napi_callback_info in
 napi_value NodeRaylibSetSaveFileDataCallback(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   SaveFileDataCallback callback = get_undefined_arg(args, 0, env, info)
+  free(args);
   SetSaveFileDataCallback(callback);
   return n_undefined;
 }
@@ -998,6 +1063,7 @@ napi_value NodeRaylibSetSaveFileDataCallback(napi_env env, napi_callback_info in
 napi_value NodeRaylibSetLoadFileTextCallback(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   LoadFileTextCallback callback = get_undefined_arg(args, 0, env, info)
+  free(args);
   SetLoadFileTextCallback(callback);
   return n_undefined;
 }
@@ -1006,6 +1072,7 @@ napi_value NodeRaylibSetLoadFileTextCallback(napi_env env, napi_callback_info in
 napi_value NodeRaylibSetSaveFileTextCallback(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   SaveFileTextCallback callback = get_undefined_arg(args, 0, env, info)
+  free(args);
   SetSaveFileTextCallback(callback);
   return n_undefined;
 }
@@ -1016,6 +1083,7 @@ napi_value NodeRaylibLoadFileData(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   int * dataSize = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=LoadFileData(fileName, dataSize);
   return return_uchar_pointer(ret);
 }
@@ -1024,6 +1092,7 @@ napi_value NodeRaylibLoadFileData(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadFileData(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadFileData(data);
   return n_undefined;
 }
@@ -1035,6 +1104,7 @@ napi_value NodeRaylibSaveFileData(napi_env env, napi_callback_info info) {
   const char * fileName = get_string_arg(args, 0, env, info)
   void * data = get_undefined_arg(args, 1, env, info)
   int dataSize = get_int_arg(args, 2, env, info)
+  free(args);
   ret=SaveFileData(fileName, data, dataSize);
   return return_bool(ret);
 }
@@ -1046,6 +1116,7 @@ napi_value NodeRaylibExportDataAsCode(napi_env env, napi_callback_info info) {
   const unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
   const char * fileName = get_string_arg(args, 2, env, info)
+  free(args);
   ret=ExportDataAsCode(data, dataSize, fileName);
   return return_bool(ret);
 }
@@ -1055,6 +1126,7 @@ napi_value NodeRaylibLoadFileText(napi_env env, napi_callback_info info) {
   char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadFileText(fileName);
   return return_string(ret);
 }
@@ -1063,6 +1135,7 @@ napi_value NodeRaylibLoadFileText(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadFileText(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   char * text = get_string_arg(args, 0, env, info)
+  free(args);
   UnloadFileText(text);
   return n_undefined;
 }
@@ -1073,6 +1146,7 @@ napi_value NodeRaylibSaveFileText(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   char * text = get_string_arg(args, 1, env, info)
+  free(args);
   ret=SaveFileText(fileName, text);
   return return_bool(ret);
 }
@@ -1082,6 +1156,7 @@ napi_value NodeRaylibFileExists(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=FileExists(fileName);
   return return_bool(ret);
 }
@@ -1091,6 +1166,7 @@ napi_value NodeRaylibDirectoryExists(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   const char * dirPath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=DirectoryExists(dirPath);
   return return_bool(ret);
 }
@@ -1101,6 +1177,7 @@ napi_value NodeRaylibIsFileExtension(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   const char * ext = get_string_arg(args, 1, env, info)
+  free(args);
   ret=IsFileExtension(fileName, ext);
   return return_bool(ret);
 }
@@ -1110,6 +1187,7 @@ napi_value NodeRaylibGetFileLength(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetFileLength(fileName);
   return return_int(ret);
 }
@@ -1119,6 +1197,7 @@ napi_value NodeRaylibGetFileExtension(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetFileExtension(fileName);
   return return_string(ret);
 }
@@ -1128,6 +1207,7 @@ napi_value NodeRaylibGetFileName(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * filePath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetFileName(filePath);
   return return_string(ret);
 }
@@ -1137,6 +1217,7 @@ napi_value NodeRaylibGetFileNameWithoutExt(napi_env env, napi_callback_info info
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * filePath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetFileNameWithoutExt(filePath);
   return return_string(ret);
 }
@@ -1146,6 +1227,7 @@ napi_value NodeRaylibGetDirectoryPath(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * filePath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetDirectoryPath(filePath);
   return return_string(ret);
 }
@@ -1155,6 +1237,7 @@ napi_value NodeRaylibGetPrevDirectoryPath(napi_env env, napi_callback_info info)
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * dirPath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetPrevDirectoryPath(dirPath);
   return return_string(ret);
 }
@@ -1178,6 +1261,7 @@ napi_value NodeRaylibMakeDirectory(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   const char * dirPath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=MakeDirectory(dirPath);
   return return_int(ret);
 }
@@ -1187,6 +1271,7 @@ napi_value NodeRaylibChangeDirectory(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   const char * dir = get_string_arg(args, 0, env, info)
+  free(args);
   ret=ChangeDirectory(dir);
   return return_bool(ret);
 }
@@ -1196,6 +1281,7 @@ napi_value NodeRaylibIsPathFile(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   const char * path = get_string_arg(args, 0, env, info)
+  free(args);
   ret=IsPathFile(path);
   return return_bool(ret);
 }
@@ -1205,6 +1291,7 @@ napi_value NodeRaylibIsFileNameValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=IsFileNameValid(fileName);
   return return_bool(ret);
 }
@@ -1214,6 +1301,7 @@ napi_value NodeRaylibLoadDirectoryFiles(napi_env env, napi_callback_info info) {
   FilePathList ret;
   napi_value* args = get_args(env, info, 1);
   const char * dirPath = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadDirectoryFiles(dirPath);
   return return_FilePathList(ret);
 }
@@ -1225,6 +1313,7 @@ napi_value NodeRaylibLoadDirectoryFilesEx(napi_env env, napi_callback_info info)
   const char * basePath = get_string_arg(args, 0, env, info)
   const char * filter = get_string_arg(args, 1, env, info)
   bool scanSubdirs = get_bool_arg(args, 2, env, info)
+  free(args);
   ret=LoadDirectoryFilesEx(basePath, filter, scanSubdirs);
   return return_FilePathList(ret);
 }
@@ -1233,6 +1322,7 @@ napi_value NodeRaylibLoadDirectoryFilesEx(napi_env env, napi_callback_info info)
 napi_value NodeRaylibUnloadDirectoryFiles(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   FilePathList files = get_FilePathList_arg(args, 0, env, info)
+  free(args);
   UnloadDirectoryFiles(files);
   return n_undefined;
 }
@@ -1255,6 +1345,7 @@ napi_value NodeRaylibLoadDroppedFiles(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadDroppedFiles(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   FilePathList files = get_FilePathList_arg(args, 0, env, info)
+  free(args);
   UnloadDroppedFiles(files);
   return n_undefined;
 }
@@ -1264,6 +1355,7 @@ napi_value NodeRaylibGetFileModTime(napi_env env, napi_callback_info info) {
   long ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetFileModTime(fileName);
   return return_long(ret);
 }
@@ -1275,6 +1367,7 @@ napi_value NodeRaylibCompressData(napi_env env, napi_callback_info info) {
   const unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
   int * compDataSize = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=CompressData(data, dataSize, compDataSize);
   return return_uchar_pointer(ret);
 }
@@ -1286,6 +1379,7 @@ napi_value NodeRaylibDecompressData(napi_env env, napi_callback_info info) {
   const unsigned char * compData = get_uchar_pointer_arg(args, 0, env, info)
   int compDataSize = get_int_arg(args, 1, env, info)
   int * dataSize = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=DecompressData(compData, compDataSize, dataSize);
   return return_uchar_pointer(ret);
 }
@@ -1297,6 +1391,7 @@ napi_value NodeRaylibEncodeDataBase64(napi_env env, napi_callback_info info) {
   const unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
   int * outputSize = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=EncodeDataBase64(data, dataSize, outputSize);
   return return_string(ret);
 }
@@ -1307,6 +1402,7 @@ napi_value NodeRaylibDecodeDataBase64(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int * outputSize = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=DecodeDataBase64(data, outputSize);
   return return_uchar_pointer(ret);
 }
@@ -1317,6 +1413,7 @@ napi_value NodeRaylibComputeCRC32(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
+  free(args);
   ret=ComputeCRC32(data, dataSize);
   return return_uint(ret);
 }
@@ -1327,6 +1424,7 @@ napi_value NodeRaylibComputeMD5(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
+  free(args);
   ret=ComputeMD5(data, dataSize);
   return return_uint_pointer(ret);
 }
@@ -1337,6 +1435,7 @@ napi_value NodeRaylibComputeSHA1(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   unsigned char * data = get_uchar_pointer_arg(args, 0, env, info)
   int dataSize = get_int_arg(args, 1, env, info)
+  free(args);
   ret=ComputeSHA1(data, dataSize);
   return return_uint_pointer(ret);
 }
@@ -1346,6 +1445,7 @@ napi_value NodeRaylibLoadAutomationEventList(napi_env env, napi_callback_info in
   AutomationEventList ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadAutomationEventList(fileName);
   return return_AutomationEventList(ret);
 }
@@ -1354,6 +1454,7 @@ napi_value NodeRaylibLoadAutomationEventList(napi_env env, napi_callback_info in
 napi_value NodeRaylibUnloadAutomationEventList(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AutomationEventList list = get_AutomationEventList_arg(args, 0, env, info)
+  free(args);
   UnloadAutomationEventList(list);
   return n_undefined;
 }
@@ -1364,6 +1465,7 @@ napi_value NodeRaylibExportAutomationEventList(napi_env env, napi_callback_info 
   napi_value* args = get_args(env, info, 2);
   AutomationEventList list = get_AutomationEventList_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportAutomationEventList(list, fileName);
   return return_bool(ret);
 }
@@ -1372,6 +1474,7 @@ napi_value NodeRaylibExportAutomationEventList(napi_env env, napi_callback_info 
 napi_value NodeRaylibSetAutomationEventList(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AutomationEventList * list = get_AutomationEventList_pointer_arg(args, 0, env, info)
+  free(args);
   SetAutomationEventList(list);
   return n_undefined;
 }
@@ -1380,6 +1483,7 @@ napi_value NodeRaylibSetAutomationEventList(napi_env env, napi_callback_info inf
 napi_value NodeRaylibSetAutomationEventBaseFrame(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int frame = get_int_arg(args, 0, env, info)
+  free(args);
   SetAutomationEventBaseFrame(frame);
   return n_undefined;
 }
@@ -1400,6 +1504,7 @@ napi_value NodeRaylibStopAutomationEventRecording(napi_env env, napi_callback_in
 napi_value NodeRaylibPlayAutomationEvent(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AutomationEvent event = get_AutomationEvent_arg(args, 0, env, info)
+  free(args);
   PlayAutomationEvent(event);
   return n_undefined;
 }
@@ -1409,6 +1514,7 @@ napi_value NodeRaylibIsKeyPressed(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsKeyPressed(key);
   return return_bool(ret);
 }
@@ -1418,6 +1524,7 @@ napi_value NodeRaylibIsKeyPressedRepeat(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsKeyPressedRepeat(key);
   return return_bool(ret);
 }
@@ -1427,6 +1534,7 @@ napi_value NodeRaylibIsKeyDown(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsKeyDown(key);
   return return_bool(ret);
 }
@@ -1436,6 +1544,7 @@ napi_value NodeRaylibIsKeyReleased(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsKeyReleased(key);
   return return_bool(ret);
 }
@@ -1445,6 +1554,7 @@ napi_value NodeRaylibIsKeyUp(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsKeyUp(key);
   return return_bool(ret);
 }
@@ -1467,6 +1577,7 @@ napi_value NodeRaylibGetCharPressed(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetExitKey(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int key = get_int_arg(args, 0, env, info)
+  free(args);
   SetExitKey(key);
   return n_undefined;
 }
@@ -1476,6 +1587,7 @@ napi_value NodeRaylibIsGamepadAvailable(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int gamepad = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsGamepadAvailable(gamepad);
   return return_bool(ret);
 }
@@ -1485,6 +1597,7 @@ napi_value NodeRaylibGetGamepadName(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   int gamepad = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetGamepadName(gamepad);
   return return_string(ret);
 }
@@ -1495,6 +1608,7 @@ napi_value NodeRaylibIsGamepadButtonPressed(napi_env env, napi_callback_info inf
   napi_value* args = get_args(env, info, 2);
   int gamepad = get_int_arg(args, 0, env, info)
   int button = get_int_arg(args, 1, env, info)
+  free(args);
   ret=IsGamepadButtonPressed(gamepad, button);
   return return_bool(ret);
 }
@@ -1505,6 +1619,7 @@ napi_value NodeRaylibIsGamepadButtonDown(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   int gamepad = get_int_arg(args, 0, env, info)
   int button = get_int_arg(args, 1, env, info)
+  free(args);
   ret=IsGamepadButtonDown(gamepad, button);
   return return_bool(ret);
 }
@@ -1515,6 +1630,7 @@ napi_value NodeRaylibIsGamepadButtonReleased(napi_env env, napi_callback_info in
   napi_value* args = get_args(env, info, 2);
   int gamepad = get_int_arg(args, 0, env, info)
   int button = get_int_arg(args, 1, env, info)
+  free(args);
   ret=IsGamepadButtonReleased(gamepad, button);
   return return_bool(ret);
 }
@@ -1525,6 +1641,7 @@ napi_value NodeRaylibIsGamepadButtonUp(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int gamepad = get_int_arg(args, 0, env, info)
   int button = get_int_arg(args, 1, env, info)
+  free(args);
   ret=IsGamepadButtonUp(gamepad, button);
   return return_bool(ret);
 }
@@ -1541,6 +1658,7 @@ napi_value NodeRaylibGetGamepadAxisCount(napi_env env, napi_callback_info info) 
   int ret;
   napi_value* args = get_args(env, info, 1);
   int gamepad = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetGamepadAxisCount(gamepad);
   return return_int(ret);
 }
@@ -1551,6 +1669,7 @@ napi_value NodeRaylibGetGamepadAxisMovement(napi_env env, napi_callback_info inf
   napi_value* args = get_args(env, info, 2);
   int gamepad = get_int_arg(args, 0, env, info)
   int axis = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetGamepadAxisMovement(gamepad, axis);
   return return_float(ret);
 }
@@ -1560,6 +1679,7 @@ napi_value NodeRaylibSetGamepadMappings(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   const char * mappings = get_string_arg(args, 0, env, info)
+  free(args);
   ret=SetGamepadMappings(mappings);
   return return_int(ret);
 }
@@ -1571,6 +1691,7 @@ napi_value NodeRaylibSetGamepadVibration(napi_env env, napi_callback_info info) 
   float leftMotor = get_float_arg(args, 1, env, info)
   float rightMotor = get_float_arg(args, 2, env, info)
   float duration = get_float_arg(args, 3, env, info)
+  free(args);
   SetGamepadVibration(gamepad, leftMotor, rightMotor, duration);
   return n_undefined;
 }
@@ -1580,6 +1701,7 @@ napi_value NodeRaylibIsMouseButtonPressed(napi_env env, napi_callback_info info)
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int button = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsMouseButtonPressed(button);
   return return_bool(ret);
 }
@@ -1589,6 +1711,7 @@ napi_value NodeRaylibIsMouseButtonDown(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int button = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsMouseButtonDown(button);
   return return_bool(ret);
 }
@@ -1598,6 +1721,7 @@ napi_value NodeRaylibIsMouseButtonReleased(napi_env env, napi_callback_info info
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int button = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsMouseButtonReleased(button);
   return return_bool(ret);
 }
@@ -1607,6 +1731,7 @@ napi_value NodeRaylibIsMouseButtonUp(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   int button = get_int_arg(args, 0, env, info)
+  free(args);
   ret=IsMouseButtonUp(button);
   return return_bool(ret);
 }
@@ -1644,6 +1769,7 @@ napi_value NodeRaylibSetMousePosition(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int x = get_int_arg(args, 0, env, info)
   int y = get_int_arg(args, 1, env, info)
+  free(args);
   SetMousePosition(x, y);
   return n_undefined;
 }
@@ -1653,6 +1779,7 @@ napi_value NodeRaylibSetMouseOffset(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int offsetX = get_int_arg(args, 0, env, info)
   int offsetY = get_int_arg(args, 1, env, info)
+  free(args);
   SetMouseOffset(offsetX, offsetY);
   return n_undefined;
 }
@@ -1662,6 +1789,7 @@ napi_value NodeRaylibSetMouseScale(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   float scaleX = get_float_arg(args, 0, env, info)
   float scaleY = get_float_arg(args, 1, env, info)
+  free(args);
   SetMouseScale(scaleX, scaleY);
   return n_undefined;
 }
@@ -1684,6 +1812,7 @@ napi_value NodeRaylibGetMouseWheelMoveV(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetMouseCursor(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int cursor = get_int_arg(args, 0, env, info)
+  free(args);
   SetMouseCursor(cursor);
   return n_undefined;
 }
@@ -1707,6 +1836,7 @@ napi_value NodeRaylibGetTouchPosition(napi_env env, napi_callback_info info) {
   Vector2 ret;
   napi_value* args = get_args(env, info, 1);
   int index = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetTouchPosition(index);
   return return_Vector2(ret);
 }
@@ -1716,6 +1846,7 @@ napi_value NodeRaylibGetTouchPointId(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   int index = get_int_arg(args, 0, env, info)
+  free(args);
   ret=GetTouchPointId(index);
   return return_int(ret);
 }
@@ -1731,6 +1862,7 @@ napi_value NodeRaylibGetTouchPointCount(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetGesturesEnabled(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   unsigned int flags = get_uint_arg(args, 0, env, info)
+  free(args);
   SetGesturesEnabled(flags);
   return n_undefined;
 }
@@ -1740,6 +1872,7 @@ napi_value NodeRaylibIsGestureDetected(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   unsigned int gesture = get_uint_arg(args, 0, env, info)
+  free(args);
   ret=IsGestureDetected(gesture);
   return return_bool(ret);
 }
@@ -1791,6 +1924,7 @@ napi_value NodeRaylibUpdateCamera(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Camera * camera = get_Camera_pointer_arg(args, 0, env, info)
   int mode = get_int_arg(args, 1, env, info)
+  free(args);
   UpdateCamera(camera, mode);
   return n_undefined;
 }
@@ -1802,6 +1936,7 @@ napi_value NodeRaylibUpdateCameraPro(napi_env env, napi_callback_info info) {
   Vector3 movement = get_Vector3_arg(args, 1, env, info)
   Vector3 rotation = get_Vector3_arg(args, 2, env, info)
   float zoom = get_float_arg(args, 3, env, info)
+  free(args);
   UpdateCameraPro(camera, movement, rotation, zoom);
   return n_undefined;
 }
@@ -1811,6 +1946,7 @@ napi_value NodeRaylibSetShapesTexture(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   Rectangle source = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   SetShapesTexture(texture, source);
   return n_undefined;
 }
@@ -1835,6 +1971,7 @@ napi_value NodeRaylibDrawPixel(napi_env env, napi_callback_info info) {
   int posX = get_int_arg(args, 0, env, info)
   int posY = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawPixel(posX, posY, color);
   return n_undefined;
 }
@@ -1844,6 +1981,7 @@ napi_value NodeRaylibDrawPixelV(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Vector2 position = get_Vector2_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   DrawPixelV(position, color);
   return n_undefined;
 }
@@ -1856,6 +1994,7 @@ napi_value NodeRaylibDrawLine(napi_env env, napi_callback_info info) {
   int endPosX = get_int_arg(args, 2, env, info)
   int endPosY = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawLine(startPosX, startPosY, endPosX, endPosY, color);
   return n_undefined;
 }
@@ -1866,6 +2005,7 @@ napi_value NodeRaylibDrawLineV(napi_env env, napi_callback_info info) {
   Vector2 startPos = get_Vector2_arg(args, 0, env, info)
   Vector2 endPos = get_Vector2_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawLineV(startPos, endPos, color);
   return n_undefined;
 }
@@ -1877,6 +2017,7 @@ napi_value NodeRaylibDrawLineEx(napi_env env, napi_callback_info info) {
   Vector2 endPos = get_Vector2_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawLineEx(startPos, endPos, thick, color);
   return n_undefined;
 }
@@ -1887,6 +2028,7 @@ napi_value NodeRaylibDrawLineStrip(napi_env env, napi_callback_info info) {
   const Vector2 * points = get_Vector2_pointer_arg(args, 0, env, info)
   int pointCount = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawLineStrip(points, pointCount, color);
   return n_undefined;
 }
@@ -1898,6 +2040,7 @@ napi_value NodeRaylibDrawLineBezier(napi_env env, napi_callback_info info) {
   Vector2 endPos = get_Vector2_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawLineBezier(startPos, endPos, thick, color);
   return n_undefined;
 }
@@ -1909,6 +2052,7 @@ napi_value NodeRaylibDrawCircle(napi_env env, napi_callback_info info) {
   int centerY = get_int_arg(args, 1, env, info)
   float radius = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawCircle(centerX, centerY, radius, color);
   return n_undefined;
 }
@@ -1922,6 +2066,7 @@ napi_value NodeRaylibDrawCircleSector(napi_env env, napi_callback_info info) {
   float endAngle = get_float_arg(args, 3, env, info)
   int segments = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCircleSector(center, radius, startAngle, endAngle, segments, color);
   return n_undefined;
 }
@@ -1935,6 +2080,7 @@ napi_value NodeRaylibDrawCircleSectorLines(napi_env env, napi_callback_info info
   float endAngle = get_float_arg(args, 3, env, info)
   int segments = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCircleSectorLines(center, radius, startAngle, endAngle, segments, color);
   return n_undefined;
 }
@@ -1947,6 +2093,7 @@ napi_value NodeRaylibDrawCircleGradient(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 2, env, info)
   Color inner = get_Color_arg(args, 3, env, info)
   Color outer = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawCircleGradient(centerX, centerY, radius, inner, outer);
   return n_undefined;
 }
@@ -1957,6 +2104,7 @@ napi_value NodeRaylibDrawCircleV(napi_env env, napi_callback_info info) {
   Vector2 center = get_Vector2_arg(args, 0, env, info)
   float radius = get_float_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawCircleV(center, radius, color);
   return n_undefined;
 }
@@ -1968,6 +2116,7 @@ napi_value NodeRaylibDrawCircleLines(napi_env env, napi_callback_info info) {
   int centerY = get_int_arg(args, 1, env, info)
   float radius = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawCircleLines(centerX, centerY, radius, color);
   return n_undefined;
 }
@@ -1978,6 +2127,7 @@ napi_value NodeRaylibDrawCircleLinesV(napi_env env, napi_callback_info info) {
   Vector2 center = get_Vector2_arg(args, 0, env, info)
   float radius = get_float_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawCircleLinesV(center, radius, color);
   return n_undefined;
 }
@@ -1990,6 +2140,7 @@ napi_value NodeRaylibDrawEllipse(napi_env env, napi_callback_info info) {
   float radiusH = get_float_arg(args, 2, env, info)
   float radiusV = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawEllipse(centerX, centerY, radiusH, radiusV, color);
   return n_undefined;
 }
@@ -2002,6 +2153,7 @@ napi_value NodeRaylibDrawEllipseLines(napi_env env, napi_callback_info info) {
   float radiusH = get_float_arg(args, 2, env, info)
   float radiusV = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawEllipseLines(centerX, centerY, radiusH, radiusV, color);
   return n_undefined;
 }
@@ -2016,6 +2168,7 @@ napi_value NodeRaylibDrawRing(napi_env env, napi_callback_info info) {
   float endAngle = get_float_arg(args, 4, env, info)
   int segments = get_int_arg(args, 5, env, info)
   Color color = get_Color_arg(args, 6, env, info)
+  free(args);
   DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
   return n_undefined;
 }
@@ -2030,6 +2183,7 @@ napi_value NodeRaylibDrawRingLines(napi_env env, napi_callback_info info) {
   float endAngle = get_float_arg(args, 4, env, info)
   int segments = get_int_arg(args, 5, env, info)
   Color color = get_Color_arg(args, 6, env, info)
+  free(args);
   DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, segments, color);
   return n_undefined;
 }
@@ -2042,6 +2196,7 @@ napi_value NodeRaylibDrawRectangle(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 2, env, info)
   int height = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawRectangle(posX, posY, width, height, color);
   return n_undefined;
 }
@@ -2052,6 +2207,7 @@ napi_value NodeRaylibDrawRectangleV(napi_env env, napi_callback_info info) {
   Vector2 position = get_Vector2_arg(args, 0, env, info)
   Vector2 size = get_Vector2_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawRectangleV(position, size, color);
   return n_undefined;
 }
@@ -2061,6 +2217,7 @@ napi_value NodeRaylibDrawRectangleRec(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Rectangle rec = get_Rectangle_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   DrawRectangleRec(rec, color);
   return n_undefined;
 }
@@ -2072,6 +2229,7 @@ napi_value NodeRaylibDrawRectanglePro(napi_env env, napi_callback_info info) {
   Vector2 origin = get_Vector2_arg(args, 1, env, info)
   float rotation = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawRectanglePro(rec, origin, rotation, color);
   return n_undefined;
 }
@@ -2085,6 +2243,7 @@ napi_value NodeRaylibDrawRectangleGradientV(napi_env env, napi_callback_info inf
   int height = get_int_arg(args, 3, env, info)
   Color top = get_Color_arg(args, 4, env, info)
   Color bottom = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawRectangleGradientV(posX, posY, width, height, top, bottom);
   return n_undefined;
 }
@@ -2098,6 +2257,7 @@ napi_value NodeRaylibDrawRectangleGradientH(napi_env env, napi_callback_info inf
   int height = get_int_arg(args, 3, env, info)
   Color left = get_Color_arg(args, 4, env, info)
   Color right = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawRectangleGradientH(posX, posY, width, height, left, right);
   return n_undefined;
 }
@@ -2110,6 +2270,7 @@ napi_value NodeRaylibDrawRectangleGradientEx(napi_env env, napi_callback_info in
   Color bottomLeft = get_Color_arg(args, 2, env, info)
   Color topRight = get_Color_arg(args, 3, env, info)
   Color bottomRight = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawRectangleGradientEx(rec, topLeft, bottomLeft, topRight, bottomRight);
   return n_undefined;
 }
@@ -2122,6 +2283,7 @@ napi_value NodeRaylibDrawRectangleLines(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 2, env, info)
   int height = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawRectangleLines(posX, posY, width, height, color);
   return n_undefined;
 }
@@ -2132,6 +2294,7 @@ napi_value NodeRaylibDrawRectangleLinesEx(napi_env env, napi_callback_info info)
   Rectangle rec = get_Rectangle_arg(args, 0, env, info)
   float lineThick = get_float_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawRectangleLinesEx(rec, lineThick, color);
   return n_undefined;
 }
@@ -2143,6 +2306,7 @@ napi_value NodeRaylibDrawRectangleRounded(napi_env env, napi_callback_info info)
   float roundness = get_float_arg(args, 1, env, info)
   int segments = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawRectangleRounded(rec, roundness, segments, color);
   return n_undefined;
 }
@@ -2154,6 +2318,7 @@ napi_value NodeRaylibDrawRectangleRoundedLines(napi_env env, napi_callback_info 
   float roundness = get_float_arg(args, 1, env, info)
   int segments = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawRectangleRoundedLines(rec, roundness, segments, color);
   return n_undefined;
 }
@@ -2166,6 +2331,7 @@ napi_value NodeRaylibDrawRectangleRoundedLinesEx(napi_env env, napi_callback_inf
   int segments = get_int_arg(args, 2, env, info)
   float lineThick = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawRectangleRoundedLinesEx(rec, roundness, segments, lineThick, color);
   return n_undefined;
 }
@@ -2177,6 +2343,7 @@ napi_value NodeRaylibDrawTriangle(napi_env env, napi_callback_info info) {
   Vector2 v2 = get_Vector2_arg(args, 1, env, info)
   Vector2 v3 = get_Vector2_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawTriangle(v1, v2, v3, color);
   return n_undefined;
 }
@@ -2188,6 +2355,7 @@ napi_value NodeRaylibDrawTriangleLines(napi_env env, napi_callback_info info) {
   Vector2 v2 = get_Vector2_arg(args, 1, env, info)
   Vector2 v3 = get_Vector2_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawTriangleLines(v1, v2, v3, color);
   return n_undefined;
 }
@@ -2198,6 +2366,7 @@ napi_value NodeRaylibDrawTriangleFan(napi_env env, napi_callback_info info) {
   const Vector2 * points = get_Vector2_pointer_arg(args, 0, env, info)
   int pointCount = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawTriangleFan(points, pointCount, color);
   return n_undefined;
 }
@@ -2208,6 +2377,7 @@ napi_value NodeRaylibDrawTriangleStrip(napi_env env, napi_callback_info info) {
   const Vector2 * points = get_Vector2_pointer_arg(args, 0, env, info)
   int pointCount = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawTriangleStrip(points, pointCount, color);
   return n_undefined;
 }
@@ -2220,6 +2390,7 @@ napi_value NodeRaylibDrawPoly(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 2, env, info)
   float rotation = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawPoly(center, sides, radius, rotation, color);
   return n_undefined;
 }
@@ -2232,6 +2403,7 @@ napi_value NodeRaylibDrawPolyLines(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 2, env, info)
   float rotation = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawPolyLines(center, sides, radius, rotation, color);
   return n_undefined;
 }
@@ -2245,6 +2417,7 @@ napi_value NodeRaylibDrawPolyLinesEx(napi_env env, napi_callback_info info) {
   float rotation = get_float_arg(args, 3, env, info)
   float lineThick = get_float_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawPolyLinesEx(center, sides, radius, rotation, lineThick, color);
   return n_undefined;
 }
@@ -2256,6 +2429,7 @@ napi_value NodeRaylibDrawSplineLinear(napi_env env, napi_callback_info info) {
   int pointCount = get_int_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineLinear(points, pointCount, thick, color);
   return n_undefined;
 }
@@ -2267,6 +2441,7 @@ napi_value NodeRaylibDrawSplineBasis(napi_env env, napi_callback_info info) {
   int pointCount = get_int_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineBasis(points, pointCount, thick, color);
   return n_undefined;
 }
@@ -2278,6 +2453,7 @@ napi_value NodeRaylibDrawSplineCatmullRom(napi_env env, napi_callback_info info)
   int pointCount = get_int_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineCatmullRom(points, pointCount, thick, color);
   return n_undefined;
 }
@@ -2289,6 +2465,7 @@ napi_value NodeRaylibDrawSplineBezierQuadratic(napi_env env, napi_callback_info 
   int pointCount = get_int_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineBezierQuadratic(points, pointCount, thick, color);
   return n_undefined;
 }
@@ -2300,6 +2477,7 @@ napi_value NodeRaylibDrawSplineBezierCubic(napi_env env, napi_callback_info info
   int pointCount = get_int_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineBezierCubic(points, pointCount, thick, color);
   return n_undefined;
 }
@@ -2311,6 +2489,7 @@ napi_value NodeRaylibDrawSplineSegmentLinear(napi_env env, napi_callback_info in
   Vector2 p2 = get_Vector2_arg(args, 1, env, info)
   float thick = get_float_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawSplineSegmentLinear(p1, p2, thick, color);
   return n_undefined;
 }
@@ -2324,6 +2503,7 @@ napi_value NodeRaylibDrawSplineSegmentBasis(napi_env env, napi_callback_info inf
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float thick = get_float_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawSplineSegmentBasis(p1, p2, p3, p4, thick, color);
   return n_undefined;
 }
@@ -2337,6 +2517,7 @@ napi_value NodeRaylibDrawSplineSegmentCatmullRom(napi_env env, napi_callback_inf
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float thick = get_float_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawSplineSegmentCatmullRom(p1, p2, p3, p4, thick, color);
   return n_undefined;
 }
@@ -2349,6 +2530,7 @@ napi_value NodeRaylibDrawSplineSegmentBezierQuadratic(napi_env env, napi_callbac
   Vector2 p3 = get_Vector2_arg(args, 2, env, info)
   float thick = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawSplineSegmentBezierQuadratic(p1, c2, p3, thick, color);
   return n_undefined;
 }
@@ -2362,6 +2544,7 @@ napi_value NodeRaylibDrawSplineSegmentBezierCubic(napi_env env, napi_callback_in
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float thick = get_float_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawSplineSegmentBezierCubic(p1, c2, c3, p4, thick, color);
   return n_undefined;
 }
@@ -2373,6 +2556,7 @@ napi_value NodeRaylibGetSplinePointLinear(napi_env env, napi_callback_info info)
   Vector2 startPos = get_Vector2_arg(args, 0, env, info)
   Vector2 endPos = get_Vector2_arg(args, 1, env, info)
   float t = get_float_arg(args, 2, env, info)
+  free(args);
   ret=GetSplinePointLinear(startPos, endPos, t);
   return return_Vector2(ret);
 }
@@ -2386,6 +2570,7 @@ napi_value NodeRaylibGetSplinePointBasis(napi_env env, napi_callback_info info) 
   Vector2 p3 = get_Vector2_arg(args, 2, env, info)
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float t = get_float_arg(args, 4, env, info)
+  free(args);
   ret=GetSplinePointBasis(p1, p2, p3, p4, t);
   return return_Vector2(ret);
 }
@@ -2399,6 +2584,7 @@ napi_value NodeRaylibGetSplinePointCatmullRom(napi_env env, napi_callback_info i
   Vector2 p3 = get_Vector2_arg(args, 2, env, info)
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float t = get_float_arg(args, 4, env, info)
+  free(args);
   ret=GetSplinePointCatmullRom(p1, p2, p3, p4, t);
   return return_Vector2(ret);
 }
@@ -2411,6 +2597,7 @@ napi_value NodeRaylibGetSplinePointBezierQuad(napi_env env, napi_callback_info i
   Vector2 c2 = get_Vector2_arg(args, 1, env, info)
   Vector2 p3 = get_Vector2_arg(args, 2, env, info)
   float t = get_float_arg(args, 3, env, info)
+  free(args);
   ret=GetSplinePointBezierQuad(p1, c2, p3, t);
   return return_Vector2(ret);
 }
@@ -2424,6 +2611,7 @@ napi_value NodeRaylibGetSplinePointBezierCubic(napi_env env, napi_callback_info 
   Vector2 c3 = get_Vector2_arg(args, 2, env, info)
   Vector2 p4 = get_Vector2_arg(args, 3, env, info)
   float t = get_float_arg(args, 4, env, info)
+  free(args);
   ret=GetSplinePointBezierCubic(p1, c2, c3, p4, t);
   return return_Vector2(ret);
 }
@@ -2434,6 +2622,7 @@ napi_value NodeRaylibCheckCollisionRecs(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Rectangle rec1 = get_Rectangle_arg(args, 0, env, info)
   Rectangle rec2 = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   ret=CheckCollisionRecs(rec1, rec2);
   return return_bool(ret);
 }
@@ -2446,6 +2635,7 @@ napi_value NodeRaylibCheckCollisionCircles(napi_env env, napi_callback_info info
   float radius1 = get_float_arg(args, 1, env, info)
   Vector2 center2 = get_Vector2_arg(args, 2, env, info)
   float radius2 = get_float_arg(args, 3, env, info)
+  free(args);
   ret=CheckCollisionCircles(center1, radius1, center2, radius2);
   return return_bool(ret);
 }
@@ -2457,6 +2647,7 @@ napi_value NodeRaylibCheckCollisionCircleRec(napi_env env, napi_callback_info in
   Vector2 center = get_Vector2_arg(args, 0, env, info)
   float radius = get_float_arg(args, 1, env, info)
   Rectangle rec = get_Rectangle_arg(args, 2, env, info)
+  free(args);
   ret=CheckCollisionCircleRec(center, radius, rec);
   return return_bool(ret);
 }
@@ -2469,6 +2660,7 @@ napi_value NodeRaylibCheckCollisionCircleLine(napi_env env, napi_callback_info i
   float radius = get_float_arg(args, 1, env, info)
   Vector2 p1 = get_Vector2_arg(args, 2, env, info)
   Vector2 p2 = get_Vector2_arg(args, 3, env, info)
+  free(args);
   ret=CheckCollisionCircleLine(center, radius, p1, p2);
   return return_bool(ret);
 }
@@ -2479,6 +2671,7 @@ napi_value NodeRaylibCheckCollisionPointRec(napi_env env, napi_callback_info inf
   napi_value* args = get_args(env, info, 2);
   Vector2 point = get_Vector2_arg(args, 0, env, info)
   Rectangle rec = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   ret=CheckCollisionPointRec(point, rec);
   return return_bool(ret);
 }
@@ -2490,6 +2683,7 @@ napi_value NodeRaylibCheckCollisionPointCircle(napi_env env, napi_callback_info 
   Vector2 point = get_Vector2_arg(args, 0, env, info)
   Vector2 center = get_Vector2_arg(args, 1, env, info)
   float radius = get_float_arg(args, 2, env, info)
+  free(args);
   ret=CheckCollisionPointCircle(point, center, radius);
   return return_bool(ret);
 }
@@ -2502,6 +2696,7 @@ napi_value NodeRaylibCheckCollisionPointTriangle(napi_env env, napi_callback_inf
   Vector2 p1 = get_Vector2_arg(args, 1, env, info)
   Vector2 p2 = get_Vector2_arg(args, 2, env, info)
   Vector2 p3 = get_Vector2_arg(args, 3, env, info)
+  free(args);
   ret=CheckCollisionPointTriangle(point, p1, p2, p3);
   return return_bool(ret);
 }
@@ -2514,6 +2709,7 @@ napi_value NodeRaylibCheckCollisionPointLine(napi_env env, napi_callback_info in
   Vector2 p1 = get_Vector2_arg(args, 1, env, info)
   Vector2 p2 = get_Vector2_arg(args, 2, env, info)
   int threshold = get_int_arg(args, 3, env, info)
+  free(args);
   ret=CheckCollisionPointLine(point, p1, p2, threshold);
   return return_bool(ret);
 }
@@ -2525,6 +2721,7 @@ napi_value NodeRaylibCheckCollisionPointPoly(napi_env env, napi_callback_info in
   Vector2 point = get_Vector2_arg(args, 0, env, info)
   const Vector2 * points = get_Vector2_pointer_arg(args, 1, env, info)
   int pointCount = get_int_arg(args, 2, env, info)
+  free(args);
   ret=CheckCollisionPointPoly(point, points, pointCount);
   return return_bool(ret);
 }
@@ -2538,6 +2735,7 @@ napi_value NodeRaylibCheckCollisionLines(napi_env env, napi_callback_info info) 
   Vector2 startPos2 = get_Vector2_arg(args, 2, env, info)
   Vector2 endPos2 = get_Vector2_arg(args, 3, env, info)
   Vector2 * collisionPoint = get_Vector2_pointer_arg(args, 4, env, info)
+  free(args);
   ret=CheckCollisionLines(startPos1, endPos1, startPos2, endPos2, collisionPoint);
   return return_bool(ret);
 }
@@ -2548,6 +2746,7 @@ napi_value NodeRaylibGetCollisionRec(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Rectangle rec1 = get_Rectangle_arg(args, 0, env, info)
   Rectangle rec2 = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   ret=GetCollisionRec(rec1, rec2);
   return return_Rectangle(ret);
 }
@@ -2557,6 +2756,7 @@ napi_value NodeRaylibLoadImage(napi_env env, napi_callback_info info) {
   Image ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadImage(fileName);
   return return_Image(ret);
 }
@@ -2570,6 +2770,7 @@ napi_value NodeRaylibLoadImageRaw(napi_env env, napi_callback_info info) {
   int height = get_int_arg(args, 2, env, info)
   int format = get_int_arg(args, 3, env, info)
   int headerSize = get_int_arg(args, 4, env, info)
+  free(args);
   ret=LoadImageRaw(fileName, width, height, format, headerSize);
   return return_Image(ret);
 }
@@ -2580,6 +2781,7 @@ napi_value NodeRaylibLoadImageAnim(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   int * frames = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=LoadImageAnim(fileName, frames);
   return return_Image(ret);
 }
@@ -2592,6 +2794,7 @@ napi_value NodeRaylibLoadImageAnimFromMemory(napi_env env, napi_callback_info in
   const unsigned char * fileData = get_uchar_pointer_arg(args, 1, env, info)
   int dataSize = get_int_arg(args, 2, env, info)
   int * frames = get_int_pointer_arg(args, 3, env, info)
+  free(args);
   ret=LoadImageAnimFromMemory(fileType, fileData, dataSize, frames);
   return return_Image(ret);
 }
@@ -2603,6 +2806,7 @@ napi_value NodeRaylibLoadImageFromMemory(napi_env env, napi_callback_info info) 
   const char * fileType = get_string_arg(args, 0, env, info)
   const unsigned char * fileData = get_uchar_pointer_arg(args, 1, env, info)
   int dataSize = get_int_arg(args, 2, env, info)
+  free(args);
   ret=LoadImageFromMemory(fileType, fileData, dataSize);
   return return_Image(ret);
 }
@@ -2612,6 +2816,7 @@ napi_value NodeRaylibLoadImageFromTexture(napi_env env, napi_callback_info info)
   Image ret;
   napi_value* args = get_args(env, info, 1);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
+  free(args);
   ret=LoadImageFromTexture(texture);
   return return_Image(ret);
 }
@@ -2628,6 +2833,7 @@ napi_value NodeRaylibIsImageValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   ret=IsImageValid(image);
   return return_bool(ret);
 }
@@ -2636,6 +2842,7 @@ napi_value NodeRaylibIsImageValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadImage(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   UnloadImage(image);
   return n_undefined;
 }
@@ -2646,6 +2853,7 @@ napi_value NodeRaylibExportImage(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportImage(image, fileName);
   return return_bool(ret);
 }
@@ -2657,6 +2865,7 @@ napi_value NodeRaylibExportImageToMemory(napi_env env, napi_callback_info info) 
   Image image = get_Image_arg(args, 0, env, info)
   const char * fileType = get_string_arg(args, 1, env, info)
   int * fileSize = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=ExportImageToMemory(image, fileType, fileSize);
   return return_uchar_pointer(ret);
 }
@@ -2667,6 +2876,7 @@ napi_value NodeRaylibExportImageAsCode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportImageAsCode(image, fileName);
   return return_bool(ret);
 }
@@ -2678,6 +2888,7 @@ napi_value NodeRaylibGenImageColor(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   ret=GenImageColor(width, height, color);
   return return_Image(ret);
 }
@@ -2691,6 +2902,7 @@ napi_value NodeRaylibGenImageGradientLinear(napi_env env, napi_callback_info inf
   int direction = get_int_arg(args, 2, env, info)
   Color start = get_Color_arg(args, 3, env, info)
   Color end = get_Color_arg(args, 4, env, info)
+  free(args);
   ret=GenImageGradientLinear(width, height, direction, start, end);
   return return_Image(ret);
 }
@@ -2704,6 +2916,7 @@ napi_value NodeRaylibGenImageGradientRadial(napi_env env, napi_callback_info inf
   float density = get_float_arg(args, 2, env, info)
   Color inner = get_Color_arg(args, 3, env, info)
   Color outer = get_Color_arg(args, 4, env, info)
+  free(args);
   ret=GenImageGradientRadial(width, height, density, inner, outer);
   return return_Image(ret);
 }
@@ -2717,6 +2930,7 @@ napi_value NodeRaylibGenImageGradientSquare(napi_env env, napi_callback_info inf
   float density = get_float_arg(args, 2, env, info)
   Color inner = get_Color_arg(args, 3, env, info)
   Color outer = get_Color_arg(args, 4, env, info)
+  free(args);
   ret=GenImageGradientSquare(width, height, density, inner, outer);
   return return_Image(ret);
 }
@@ -2731,6 +2945,7 @@ napi_value NodeRaylibGenImageChecked(napi_env env, napi_callback_info info) {
   int checksY = get_int_arg(args, 3, env, info)
   Color col1 = get_Color_arg(args, 4, env, info)
   Color col2 = get_Color_arg(args, 5, env, info)
+  free(args);
   ret=GenImageChecked(width, height, checksX, checksY, col1, col2);
   return return_Image(ret);
 }
@@ -2742,6 +2957,7 @@ napi_value NodeRaylibGenImageWhiteNoise(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   float factor = get_float_arg(args, 2, env, info)
+  free(args);
   ret=GenImageWhiteNoise(width, height, factor);
   return return_Image(ret);
 }
@@ -2755,6 +2971,7 @@ napi_value NodeRaylibGenImagePerlinNoise(napi_env env, napi_callback_info info) 
   int offsetX = get_int_arg(args, 2, env, info)
   int offsetY = get_int_arg(args, 3, env, info)
   float scale = get_float_arg(args, 4, env, info)
+  free(args);
   ret=GenImagePerlinNoise(width, height, offsetX, offsetY, scale);
   return return_Image(ret);
 }
@@ -2766,6 +2983,7 @@ napi_value NodeRaylibGenImageCellular(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   int tileSize = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GenImageCellular(width, height, tileSize);
   return return_Image(ret);
 }
@@ -2777,6 +2995,7 @@ napi_value NodeRaylibGenImageText(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   const char * text = get_string_arg(args, 2, env, info)
+  free(args);
   ret=GenImageText(width, height, text);
   return return_Image(ret);
 }
@@ -2786,6 +3005,7 @@ napi_value NodeRaylibImageCopy(napi_env env, napi_callback_info info) {
   Image ret;
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   ret=ImageCopy(image);
   return return_Image(ret);
 }
@@ -2796,6 +3016,7 @@ napi_value NodeRaylibImageFromImage(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   Rectangle rec = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   ret=ImageFromImage(image, rec);
   return return_Image(ret);
 }
@@ -2806,6 +3027,7 @@ napi_value NodeRaylibImageFromChannel(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   int selectedChannel = get_int_arg(args, 1, env, info)
+  free(args);
   ret=ImageFromChannel(image, selectedChannel);
   return return_Image(ret);
 }
@@ -2817,6 +3039,7 @@ napi_value NodeRaylibImageText(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 0, env, info)
   int fontSize = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   ret=ImageText(text, fontSize, color);
   return return_Image(ret);
 }
@@ -2830,6 +3053,7 @@ napi_value NodeRaylibImageTextEx(napi_env env, napi_callback_info info) {
   float fontSize = get_float_arg(args, 2, env, info)
   float spacing = get_float_arg(args, 3, env, info)
   Color tint = get_Color_arg(args, 4, env, info)
+  free(args);
   ret=ImageTextEx(font, text, fontSize, spacing, tint);
   return return_Image(ret);
 }
@@ -2839,6 +3063,7 @@ napi_value NodeRaylibImageFormat(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int newFormat = get_int_arg(args, 1, env, info)
+  free(args);
   ImageFormat(image, newFormat);
   return n_undefined;
 }
@@ -2848,6 +3073,7 @@ napi_value NodeRaylibImageToPOT(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Color fill = get_Color_arg(args, 1, env, info)
+  free(args);
   ImageToPOT(image, fill);
   return n_undefined;
 }
@@ -2857,6 +3083,7 @@ napi_value NodeRaylibImageCrop(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Rectangle crop = get_Rectangle_arg(args, 1, env, info)
+  free(args);
   ImageCrop(image, crop);
   return n_undefined;
 }
@@ -2866,6 +3093,7 @@ napi_value NodeRaylibImageAlphaCrop(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   float threshold = get_float_arg(args, 1, env, info)
+  free(args);
   ImageAlphaCrop(image, threshold);
   return n_undefined;
 }
@@ -2876,6 +3104,7 @@ napi_value NodeRaylibImageAlphaClear(napi_env env, napi_callback_info info) {
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
   float threshold = get_float_arg(args, 2, env, info)
+  free(args);
   ImageAlphaClear(image, color, threshold);
   return n_undefined;
 }
@@ -2885,6 +3114,7 @@ napi_value NodeRaylibImageAlphaMask(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Image alphaMask = get_Image_arg(args, 1, env, info)
+  free(args);
   ImageAlphaMask(image, alphaMask);
   return n_undefined;
 }
@@ -2893,6 +3123,7 @@ napi_value NodeRaylibImageAlphaMask(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageAlphaPremultiply(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageAlphaPremultiply(image);
   return n_undefined;
 }
@@ -2902,6 +3133,7 @@ napi_value NodeRaylibImageBlurGaussian(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int blurSize = get_int_arg(args, 1, env, info)
+  free(args);
   ImageBlurGaussian(image, blurSize);
   return n_undefined;
 }
@@ -2912,6 +3144,7 @@ napi_value NodeRaylibImageKernelConvolution(napi_env env, napi_callback_info inf
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   const float * kernel = get_float_pointer_arg(args, 1, env, info)
   int kernelSize = get_int_arg(args, 2, env, info)
+  free(args);
   ImageKernelConvolution(image, kernel, kernelSize);
   return n_undefined;
 }
@@ -2922,6 +3155,7 @@ napi_value NodeRaylibImageResize(napi_env env, napi_callback_info info) {
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int newWidth = get_int_arg(args, 1, env, info)
   int newHeight = get_int_arg(args, 2, env, info)
+  free(args);
   ImageResize(image, newWidth, newHeight);
   return n_undefined;
 }
@@ -2932,6 +3166,7 @@ napi_value NodeRaylibImageResizeNN(napi_env env, napi_callback_info info) {
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int newWidth = get_int_arg(args, 1, env, info)
   int newHeight = get_int_arg(args, 2, env, info)
+  free(args);
   ImageResizeNN(image, newWidth, newHeight);
   return n_undefined;
 }
@@ -2945,6 +3180,7 @@ napi_value NodeRaylibImageResizeCanvas(napi_env env, napi_callback_info info) {
   int offsetX = get_int_arg(args, 3, env, info)
   int offsetY = get_int_arg(args, 4, env, info)
   Color fill = get_Color_arg(args, 5, env, info)
+  free(args);
   ImageResizeCanvas(image, newWidth, newHeight, offsetX, offsetY, fill);
   return n_undefined;
 }
@@ -2953,6 +3189,7 @@ napi_value NodeRaylibImageResizeCanvas(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageMipmaps(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageMipmaps(image);
   return n_undefined;
 }
@@ -2965,6 +3202,7 @@ napi_value NodeRaylibImageDither(napi_env env, napi_callback_info info) {
   int gBpp = get_int_arg(args, 2, env, info)
   int bBpp = get_int_arg(args, 3, env, info)
   int aBpp = get_int_arg(args, 4, env, info)
+  free(args);
   ImageDither(image, rBpp, gBpp, bBpp, aBpp);
   return n_undefined;
 }
@@ -2973,6 +3211,7 @@ napi_value NodeRaylibImageDither(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageFlipVertical(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageFlipVertical(image);
   return n_undefined;
 }
@@ -2981,6 +3220,7 @@ napi_value NodeRaylibImageFlipVertical(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageFlipHorizontal(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageFlipHorizontal(image);
   return n_undefined;
 }
@@ -2990,6 +3230,7 @@ napi_value NodeRaylibImageRotate(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int degrees = get_int_arg(args, 1, env, info)
+  free(args);
   ImageRotate(image, degrees);
   return n_undefined;
 }
@@ -2998,6 +3239,7 @@ napi_value NodeRaylibImageRotate(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageRotateCW(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageRotateCW(image);
   return n_undefined;
 }
@@ -3006,6 +3248,7 @@ napi_value NodeRaylibImageRotateCW(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageRotateCCW(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageRotateCCW(image);
   return n_undefined;
 }
@@ -3015,6 +3258,7 @@ napi_value NodeRaylibImageColorTint(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   ImageColorTint(image, color);
   return n_undefined;
 }
@@ -3023,6 +3267,7 @@ napi_value NodeRaylibImageColorTint(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageColorInvert(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageColorInvert(image);
   return n_undefined;
 }
@@ -3031,6 +3276,7 @@ napi_value NodeRaylibImageColorInvert(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibImageColorGrayscale(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
+  free(args);
   ImageColorGrayscale(image);
   return n_undefined;
 }
@@ -3040,6 +3286,7 @@ napi_value NodeRaylibImageColorContrast(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   float contrast = get_float_arg(args, 1, env, info)
+  free(args);
   ImageColorContrast(image, contrast);
   return n_undefined;
 }
@@ -3049,6 +3296,7 @@ napi_value NodeRaylibImageColorBrightness(napi_env env, napi_callback_info info)
   napi_value* args = get_args(env, info, 2);
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   int brightness = get_int_arg(args, 1, env, info)
+  free(args);
   ImageColorBrightness(image, brightness);
   return n_undefined;
 }
@@ -3059,6 +3307,7 @@ napi_value NodeRaylibImageColorReplace(napi_env env, napi_callback_info info) {
   Image * image = get_Image_pointer_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
   Color replace = get_Color_arg(args, 2, env, info)
+  free(args);
   ImageColorReplace(image, color, replace);
   return n_undefined;
 }
@@ -3068,6 +3317,7 @@ napi_value NodeRaylibLoadImageColors(napi_env env, napi_callback_info info) {
   Color * ret;
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   ret=LoadImageColors(image);
   return return_Color_pointer(ret);
 }
@@ -3079,6 +3329,7 @@ napi_value NodeRaylibLoadImagePalette(napi_env env, napi_callback_info info) {
   Image image = get_Image_arg(args, 0, env, info)
   int maxPaletteSize = get_int_arg(args, 1, env, info)
   int * colorCount = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=LoadImagePalette(image, maxPaletteSize, colorCount);
   return return_Color_pointer(ret);
 }
@@ -3087,6 +3338,7 @@ napi_value NodeRaylibLoadImagePalette(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadImageColors(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Color * colors = get_Color_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadImageColors(colors);
   return n_undefined;
 }
@@ -3095,6 +3347,7 @@ napi_value NodeRaylibUnloadImageColors(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadImagePalette(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Color * colors = get_Color_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadImagePalette(colors);
   return n_undefined;
 }
@@ -3105,6 +3358,7 @@ napi_value NodeRaylibGetImageAlphaBorder(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   float threshold = get_float_arg(args, 1, env, info)
+  free(args);
   ret=GetImageAlphaBorder(image, threshold);
   return return_Rectangle(ret);
 }
@@ -3116,6 +3370,7 @@ napi_value NodeRaylibGetImageColor(napi_env env, napi_callback_info info) {
   Image image = get_Image_arg(args, 0, env, info)
   int x = get_int_arg(args, 1, env, info)
   int y = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GetImageColor(image, x, y);
   return return_Color(ret);
 }
@@ -3125,6 +3380,7 @@ napi_value NodeRaylibImageClearBackground(napi_env env, napi_callback_info info)
   napi_value* args = get_args(env, info, 2);
   Image * dst = get_Image_pointer_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   ImageClearBackground(dst, color);
   return n_undefined;
 }
@@ -3136,6 +3392,7 @@ napi_value NodeRaylibImageDrawPixel(napi_env env, napi_callback_info info) {
   int posX = get_int_arg(args, 1, env, info)
   int posY = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawPixel(dst, posX, posY, color);
   return n_undefined;
 }
@@ -3146,6 +3403,7 @@ napi_value NodeRaylibImageDrawPixelV(napi_env env, napi_callback_info info) {
   Image * dst = get_Image_pointer_arg(args, 0, env, info)
   Vector2 position = get_Vector2_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   ImageDrawPixelV(dst, position, color);
   return n_undefined;
 }
@@ -3159,6 +3417,7 @@ napi_value NodeRaylibImageDrawLine(napi_env env, napi_callback_info info) {
   int endPosX = get_int_arg(args, 3, env, info)
   int endPosY = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   ImageDrawLine(dst, startPosX, startPosY, endPosX, endPosY, color);
   return n_undefined;
 }
@@ -3170,6 +3429,7 @@ napi_value NodeRaylibImageDrawLineV(napi_env env, napi_callback_info info) {
   Vector2 start = get_Vector2_arg(args, 1, env, info)
   Vector2 end = get_Vector2_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawLineV(dst, start, end, color);
   return n_undefined;
 }
@@ -3182,6 +3442,7 @@ napi_value NodeRaylibImageDrawLineEx(napi_env env, napi_callback_info info) {
   Vector2 end = get_Vector2_arg(args, 2, env, info)
   int thick = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDrawLineEx(dst, start, end, thick, color);
   return n_undefined;
 }
@@ -3194,6 +3455,7 @@ napi_value NodeRaylibImageDrawCircle(napi_env env, napi_callback_info info) {
   int centerY = get_int_arg(args, 2, env, info)
   int radius = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDrawCircle(dst, centerX, centerY, radius, color);
   return n_undefined;
 }
@@ -3205,6 +3467,7 @@ napi_value NodeRaylibImageDrawCircleV(napi_env env, napi_callback_info info) {
   Vector2 center = get_Vector2_arg(args, 1, env, info)
   int radius = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawCircleV(dst, center, radius, color);
   return n_undefined;
 }
@@ -3217,6 +3480,7 @@ napi_value NodeRaylibImageDrawCircleLines(napi_env env, napi_callback_info info)
   int centerY = get_int_arg(args, 2, env, info)
   int radius = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDrawCircleLines(dst, centerX, centerY, radius, color);
   return n_undefined;
 }
@@ -3228,6 +3492,7 @@ napi_value NodeRaylibImageDrawCircleLinesV(napi_env env, napi_callback_info info
   Vector2 center = get_Vector2_arg(args, 1, env, info)
   int radius = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawCircleLinesV(dst, center, radius, color);
   return n_undefined;
 }
@@ -3241,6 +3506,7 @@ napi_value NodeRaylibImageDrawRectangle(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 3, env, info)
   int height = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   ImageDrawRectangle(dst, posX, posY, width, height, color);
   return n_undefined;
 }
@@ -3252,6 +3518,7 @@ napi_value NodeRaylibImageDrawRectangleV(napi_env env, napi_callback_info info) 
   Vector2 position = get_Vector2_arg(args, 1, env, info)
   Vector2 size = get_Vector2_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawRectangleV(dst, position, size, color);
   return n_undefined;
 }
@@ -3262,6 +3529,7 @@ napi_value NodeRaylibImageDrawRectangleRec(napi_env env, napi_callback_info info
   Image * dst = get_Image_pointer_arg(args, 0, env, info)
   Rectangle rec = get_Rectangle_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   ImageDrawRectangleRec(dst, rec, color);
   return n_undefined;
 }
@@ -3273,6 +3541,7 @@ napi_value NodeRaylibImageDrawRectangleLines(napi_env env, napi_callback_info in
   Rectangle rec = get_Rectangle_arg(args, 1, env, info)
   int thick = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawRectangleLines(dst, rec, thick, color);
   return n_undefined;
 }
@@ -3285,6 +3554,7 @@ napi_value NodeRaylibImageDrawTriangle(napi_env env, napi_callback_info info) {
   Vector2 v2 = get_Vector2_arg(args, 2, env, info)
   Vector2 v3 = get_Vector2_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDrawTriangle(dst, v1, v2, v3, color);
   return n_undefined;
 }
@@ -3299,6 +3569,7 @@ napi_value NodeRaylibImageDrawTriangleEx(napi_env env, napi_callback_info info) 
   Color c1 = get_Color_arg(args, 4, env, info)
   Color c2 = get_Color_arg(args, 5, env, info)
   Color c3 = get_Color_arg(args, 6, env, info)
+  free(args);
   ImageDrawTriangleEx(dst, v1, v2, v3, c1, c2, c3);
   return n_undefined;
 }
@@ -3311,6 +3582,7 @@ napi_value NodeRaylibImageDrawTriangleLines(napi_env env, napi_callback_info inf
   Vector2 v2 = get_Vector2_arg(args, 2, env, info)
   Vector2 v3 = get_Vector2_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDrawTriangleLines(dst, v1, v2, v3, color);
   return n_undefined;
 }
@@ -3322,6 +3594,7 @@ napi_value NodeRaylibImageDrawTriangleFan(napi_env env, napi_callback_info info)
   Vector2 * points = get_Vector2_pointer_arg(args, 1, env, info)
   int pointCount = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawTriangleFan(dst, points, pointCount, color);
   return n_undefined;
 }
@@ -3333,6 +3606,7 @@ napi_value NodeRaylibImageDrawTriangleStrip(napi_env env, napi_callback_info inf
   Vector2 * points = get_Vector2_pointer_arg(args, 1, env, info)
   int pointCount = get_int_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   ImageDrawTriangleStrip(dst, points, pointCount, color);
   return n_undefined;
 }
@@ -3345,6 +3619,7 @@ napi_value NodeRaylibImageDraw(napi_env env, napi_callback_info info) {
   Rectangle srcRec = get_Rectangle_arg(args, 2, env, info)
   Rectangle dstRec = get_Rectangle_arg(args, 3, env, info)
   Color tint = get_Color_arg(args, 4, env, info)
+  free(args);
   ImageDraw(dst, src, srcRec, dstRec, tint);
   return n_undefined;
 }
@@ -3358,6 +3633,7 @@ napi_value NodeRaylibImageDrawText(napi_env env, napi_callback_info info) {
   int posY = get_int_arg(args, 3, env, info)
   int fontSize = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   ImageDrawText(dst, text, posX, posY, fontSize, color);
   return n_undefined;
 }
@@ -3372,6 +3648,7 @@ napi_value NodeRaylibImageDrawTextEx(napi_env env, napi_callback_info info) {
   float fontSize = get_float_arg(args, 4, env, info)
   float spacing = get_float_arg(args, 5, env, info)
   Color tint = get_Color_arg(args, 6, env, info)
+  free(args);
   ImageDrawTextEx(dst, font, text, position, fontSize, spacing, tint);
   return n_undefined;
 }
@@ -3381,6 +3658,7 @@ napi_value NodeRaylibLoadTexture(napi_env env, napi_callback_info info) {
   Texture2D ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadTexture(fileName);
   return return_Texture2D(ret);
 }
@@ -3390,6 +3668,7 @@ napi_value NodeRaylibLoadTextureFromImage(napi_env env, napi_callback_info info)
   Texture2D ret;
   napi_value* args = get_args(env, info, 1);
   Image image = get_Image_arg(args, 0, env, info)
+  free(args);
   ret=LoadTextureFromImage(image);
   return return_Texture2D(ret);
 }
@@ -3400,6 +3679,7 @@ napi_value NodeRaylibLoadTextureCubemap(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image image = get_Image_arg(args, 0, env, info)
   int layout = get_int_arg(args, 1, env, info)
+  free(args);
   ret=LoadTextureCubemap(image, layout);
   return return_TextureCubemap(ret);
 }
@@ -3410,6 +3690,7 @@ napi_value NodeRaylibLoadRenderTexture(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
+  free(args);
   ret=LoadRenderTexture(width, height);
   return return_RenderTexture2D(ret);
 }
@@ -3419,6 +3700,7 @@ napi_value NodeRaylibIsTextureValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
+  free(args);
   ret=IsTextureValid(texture);
   return return_bool(ret);
 }
@@ -3427,6 +3709,7 @@ napi_value NodeRaylibIsTextureValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadTexture(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
+  free(args);
   UnloadTexture(texture);
   return n_undefined;
 }
@@ -3436,6 +3719,7 @@ napi_value NodeRaylibIsRenderTextureValid(napi_env env, napi_callback_info info)
   bool ret;
   napi_value* args = get_args(env, info, 1);
   RenderTexture2D target = get_RenderTexture2D_arg(args, 0, env, info)
+  free(args);
   ret=IsRenderTextureValid(target);
   return return_bool(ret);
 }
@@ -3444,6 +3728,7 @@ napi_value NodeRaylibIsRenderTextureValid(napi_env env, napi_callback_info info)
 napi_value NodeRaylibUnloadRenderTexture(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   RenderTexture2D target = get_RenderTexture2D_arg(args, 0, env, info)
+  free(args);
   UnloadRenderTexture(target);
   return n_undefined;
 }
@@ -3453,6 +3738,7 @@ napi_value NodeRaylibUpdateTexture(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   const void * pixels = get_undefined_arg(args, 1, env, info)
+  free(args);
   UpdateTexture(texture, pixels);
   return n_undefined;
 }
@@ -3463,6 +3749,7 @@ napi_value NodeRaylibUpdateTextureRec(napi_env env, napi_callback_info info) {
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   Rectangle rec = get_Rectangle_arg(args, 1, env, info)
   const void * pixels = get_undefined_arg(args, 2, env, info)
+  free(args);
   UpdateTextureRec(texture, rec, pixels);
   return n_undefined;
 }
@@ -3471,6 +3758,7 @@ napi_value NodeRaylibUpdateTextureRec(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibGenTextureMipmaps(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Texture2D * texture = get_Texture2D_pointer_arg(args, 0, env, info)
+  free(args);
   GenTextureMipmaps(texture);
   return n_undefined;
 }
@@ -3480,6 +3768,7 @@ napi_value NodeRaylibSetTextureFilter(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   int filter = get_int_arg(args, 1, env, info)
+  free(args);
   SetTextureFilter(texture, filter);
   return n_undefined;
 }
@@ -3489,6 +3778,7 @@ napi_value NodeRaylibSetTextureWrap(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   int wrap = get_int_arg(args, 1, env, info)
+  free(args);
   SetTextureWrap(texture, wrap);
   return n_undefined;
 }
@@ -3500,6 +3790,7 @@ napi_value NodeRaylibDrawTexture(napi_env env, napi_callback_info info) {
   int posX = get_int_arg(args, 1, env, info)
   int posY = get_int_arg(args, 2, env, info)
   Color tint = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawTexture(texture, posX, posY, tint);
   return n_undefined;
 }
@@ -3510,6 +3801,7 @@ napi_value NodeRaylibDrawTextureV(napi_env env, napi_callback_info info) {
   Texture2D texture = get_Texture2D_arg(args, 0, env, info)
   Vector2 position = get_Vector2_arg(args, 1, env, info)
   Color tint = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawTextureV(texture, position, tint);
   return n_undefined;
 }
@@ -3522,6 +3814,7 @@ napi_value NodeRaylibDrawTextureEx(napi_env env, napi_callback_info info) {
   float rotation = get_float_arg(args, 2, env, info)
   float scale = get_float_arg(args, 3, env, info)
   Color tint = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawTextureEx(texture, position, rotation, scale, tint);
   return n_undefined;
 }
@@ -3533,6 +3826,7 @@ napi_value NodeRaylibDrawTextureRec(napi_env env, napi_callback_info info) {
   Rectangle source = get_Rectangle_arg(args, 1, env, info)
   Vector2 position = get_Vector2_arg(args, 2, env, info)
   Color tint = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawTextureRec(texture, source, position, tint);
   return n_undefined;
 }
@@ -3546,6 +3840,7 @@ napi_value NodeRaylibDrawTexturePro(napi_env env, napi_callback_info info) {
   Vector2 origin = get_Vector2_arg(args, 3, env, info)
   float rotation = get_float_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawTexturePro(texture, source, dest, origin, rotation, tint);
   return n_undefined;
 }
@@ -3559,6 +3854,7 @@ napi_value NodeRaylibDrawTextureNPatch(napi_env env, napi_callback_info info) {
   Vector2 origin = get_Vector2_arg(args, 3, env, info)
   float rotation = get_float_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawTextureNPatch(texture, nPatchInfo, dest, origin, rotation, tint);
   return n_undefined;
 }
@@ -3569,6 +3865,7 @@ napi_value NodeRaylibColorIsEqual(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color col1 = get_Color_arg(args, 0, env, info)
   Color col2 = get_Color_arg(args, 1, env, info)
+  free(args);
   ret=ColorIsEqual(col1, col2);
   return return_bool(ret);
 }
@@ -3579,6 +3876,7 @@ napi_value NodeRaylibFade(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color color = get_Color_arg(args, 0, env, info)
   float alpha = get_float_arg(args, 1, env, info)
+  free(args);
   ret=Fade(color, alpha);
   return return_Color(ret);
 }
@@ -3588,6 +3886,7 @@ napi_value NodeRaylibColorToInt(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   Color color = get_Color_arg(args, 0, env, info)
+  free(args);
   ret=ColorToInt(color);
   return return_int(ret);
 }
@@ -3597,6 +3896,7 @@ napi_value NodeRaylibColorNormalize(napi_env env, napi_callback_info info) {
   Vector4 ret;
   napi_value* args = get_args(env, info, 1);
   Color color = get_Color_arg(args, 0, env, info)
+  free(args);
   ret=ColorNormalize(color);
   return return_Vector4(ret);
 }
@@ -3606,6 +3906,7 @@ napi_value NodeRaylibColorFromNormalized(napi_env env, napi_callback_info info) 
   Color ret;
   napi_value* args = get_args(env, info, 1);
   Vector4 normalized = get_Vector4_arg(args, 0, env, info)
+  free(args);
   ret=ColorFromNormalized(normalized);
   return return_Color(ret);
 }
@@ -3615,6 +3916,7 @@ napi_value NodeRaylibColorToHSV(napi_env env, napi_callback_info info) {
   Vector3 ret;
   napi_value* args = get_args(env, info, 1);
   Color color = get_Color_arg(args, 0, env, info)
+  free(args);
   ret=ColorToHSV(color);
   return return_Vector3(ret);
 }
@@ -3626,6 +3928,7 @@ napi_value NodeRaylibColorFromHSV(napi_env env, napi_callback_info info) {
   float hue = get_float_arg(args, 0, env, info)
   float saturation = get_float_arg(args, 1, env, info)
   float value = get_float_arg(args, 2, env, info)
+  free(args);
   ret=ColorFromHSV(hue, saturation, value);
   return return_Color(ret);
 }
@@ -3636,6 +3939,7 @@ napi_value NodeRaylibColorTint(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color color = get_Color_arg(args, 0, env, info)
   Color tint = get_Color_arg(args, 1, env, info)
+  free(args);
   ret=ColorTint(color, tint);
   return return_Color(ret);
 }
@@ -3646,6 +3950,7 @@ napi_value NodeRaylibColorBrightness(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color color = get_Color_arg(args, 0, env, info)
   float factor = get_float_arg(args, 1, env, info)
+  free(args);
   ret=ColorBrightness(color, factor);
   return return_Color(ret);
 }
@@ -3656,6 +3961,7 @@ napi_value NodeRaylibColorContrast(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color color = get_Color_arg(args, 0, env, info)
   float contrast = get_float_arg(args, 1, env, info)
+  free(args);
   ret=ColorContrast(color, contrast);
   return return_Color(ret);
 }
@@ -3666,6 +3972,7 @@ napi_value NodeRaylibColorAlpha(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Color color = get_Color_arg(args, 0, env, info)
   float alpha = get_float_arg(args, 1, env, info)
+  free(args);
   ret=ColorAlpha(color, alpha);
   return return_Color(ret);
 }
@@ -3677,6 +3984,7 @@ napi_value NodeRaylibColorAlphaBlend(napi_env env, napi_callback_info info) {
   Color dst = get_Color_arg(args, 0, env, info)
   Color src = get_Color_arg(args, 1, env, info)
   Color tint = get_Color_arg(args, 2, env, info)
+  free(args);
   ret=ColorAlphaBlend(dst, src, tint);
   return return_Color(ret);
 }
@@ -3688,6 +3996,7 @@ napi_value NodeRaylibColorLerp(napi_env env, napi_callback_info info) {
   Color color1 = get_Color_arg(args, 0, env, info)
   Color color2 = get_Color_arg(args, 1, env, info)
   float factor = get_float_arg(args, 2, env, info)
+  free(args);
   ret=ColorLerp(color1, color2, factor);
   return return_Color(ret);
 }
@@ -3697,6 +4006,7 @@ napi_value NodeRaylibGetColor(napi_env env, napi_callback_info info) {
   Color ret;
   napi_value* args = get_args(env, info, 1);
   unsigned int hexValue = get_uint_arg(args, 0, env, info)
+  free(args);
   ret=GetColor(hexValue);
   return return_Color(ret);
 }
@@ -3707,6 +4017,7 @@ napi_value NodeRaylibGetPixelColor(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   void * srcPtr = get_undefined_arg(args, 0, env, info)
   int format = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetPixelColor(srcPtr, format);
   return return_Color(ret);
 }
@@ -3717,6 +4028,7 @@ napi_value NodeRaylibSetPixelColor(napi_env env, napi_callback_info info) {
   void * dstPtr = get_undefined_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
   int format = get_int_arg(args, 2, env, info)
+  free(args);
   SetPixelColor(dstPtr, color, format);
   return n_undefined;
 }
@@ -3728,6 +4040,7 @@ napi_value NodeRaylibGetPixelDataSize(napi_env env, napi_callback_info info) {
   int width = get_int_arg(args, 0, env, info)
   int height = get_int_arg(args, 1, env, info)
   int format = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GetPixelDataSize(width, height, format);
   return return_int(ret);
 }
@@ -3744,6 +4057,7 @@ napi_value NodeRaylibLoadFont(napi_env env, napi_callback_info info) {
   Font ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadFont(fileName);
   return return_Font(ret);
 }
@@ -3756,6 +4070,7 @@ napi_value NodeRaylibLoadFontEx(napi_env env, napi_callback_info info) {
   int fontSize = get_int_arg(args, 1, env, info)
   int * codepoints = get_int_pointer_arg(args, 2, env, info)
   int codepointCount = get_int_arg(args, 3, env, info)
+  free(args);
   ret=LoadFontEx(fileName, fontSize, codepoints, codepointCount);
   return return_Font(ret);
 }
@@ -3767,6 +4082,7 @@ napi_value NodeRaylibLoadFontFromImage(napi_env env, napi_callback_info info) {
   Image image = get_Image_arg(args, 0, env, info)
   Color key = get_Color_arg(args, 1, env, info)
   int firstChar = get_int_arg(args, 2, env, info)
+  free(args);
   ret=LoadFontFromImage(image, key, firstChar);
   return return_Font(ret);
 }
@@ -3781,6 +4097,7 @@ napi_value NodeRaylibLoadFontFromMemory(napi_env env, napi_callback_info info) {
   int fontSize = get_int_arg(args, 3, env, info)
   int * codepoints = get_int_pointer_arg(args, 4, env, info)
   int codepointCount = get_int_arg(args, 5, env, info)
+  free(args);
   ret=LoadFontFromMemory(fileType, fileData, dataSize, fontSize, codepoints, codepointCount);
   return return_Font(ret);
 }
@@ -3790,6 +4107,7 @@ napi_value NodeRaylibIsFontValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Font font = get_Font_arg(args, 0, env, info)
+  free(args);
   ret=IsFontValid(font);
   return return_bool(ret);
 }
@@ -3804,6 +4122,7 @@ napi_value NodeRaylibLoadFontData(napi_env env, napi_callback_info info) {
   int * codepoints = get_int_pointer_arg(args, 3, env, info)
   int codepointCount = get_int_arg(args, 4, env, info)
   int type = get_int_arg(args, 5, env, info)
+  free(args);
   ret=LoadFontData(fileData, dataSize, fontSize, codepoints, codepointCount, type);
   return return_GlyphInfo_pointer(ret);
 }
@@ -3818,6 +4137,7 @@ napi_value NodeRaylibGenImageFontAtlas(napi_env env, napi_callback_info info) {
   int fontSize = get_int_arg(args, 3, env, info)
   int padding = get_int_arg(args, 4, env, info)
   int packMethod = get_int_arg(args, 5, env, info)
+  free(args);
   ret=GenImageFontAtlas(glyphs, glyphRecs, glyphCount, fontSize, padding, packMethod);
   return return_Image(ret);
 }
@@ -3827,6 +4147,7 @@ napi_value NodeRaylibUnloadFontData(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   GlyphInfo * glyphs = get_GlyphInfo_pointer_arg(args, 0, env, info)
   int glyphCount = get_int_arg(args, 1, env, info)
+  free(args);
   UnloadFontData(glyphs, glyphCount);
   return n_undefined;
 }
@@ -3835,6 +4156,7 @@ napi_value NodeRaylibUnloadFontData(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadFont(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Font font = get_Font_arg(args, 0, env, info)
+  free(args);
   UnloadFont(font);
   return n_undefined;
 }
@@ -3845,6 +4167,7 @@ napi_value NodeRaylibExportFontAsCode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Font font = get_Font_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportFontAsCode(font, fileName);
   return return_bool(ret);
 }
@@ -3854,6 +4177,7 @@ napi_value NodeRaylibDrawFPS(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int posX = get_int_arg(args, 0, env, info)
   int posY = get_int_arg(args, 1, env, info)
+  free(args);
   DrawFPS(posX, posY);
   return n_undefined;
 }
@@ -3866,6 +4190,7 @@ napi_value NodeRaylibDrawText(napi_env env, napi_callback_info info) {
   int posY = get_int_arg(args, 2, env, info)
   int fontSize = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawText(text, posX, posY, fontSize, color);
   return n_undefined;
 }
@@ -3879,6 +4204,7 @@ napi_value NodeRaylibDrawTextEx(napi_env env, napi_callback_info info) {
   float fontSize = get_float_arg(args, 3, env, info)
   float spacing = get_float_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawTextEx(font, text, position, fontSize, spacing, tint);
   return n_undefined;
 }
@@ -3894,6 +4220,7 @@ napi_value NodeRaylibDrawTextPro(napi_env env, napi_callback_info info) {
   float fontSize = get_float_arg(args, 5, env, info)
   float spacing = get_float_arg(args, 6, env, info)
   Color tint = get_Color_arg(args, 7, env, info)
+  free(args);
   DrawTextPro(font, text, position, origin, rotation, fontSize, spacing, tint);
   return n_undefined;
 }
@@ -3906,6 +4233,7 @@ napi_value NodeRaylibDrawTextCodepoint(napi_env env, napi_callback_info info) {
   Vector2 position = get_Vector2_arg(args, 2, env, info)
   float fontSize = get_float_arg(args, 3, env, info)
   Color tint = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawTextCodepoint(font, codepoint, position, fontSize, tint);
   return n_undefined;
 }
@@ -3920,6 +4248,7 @@ napi_value NodeRaylibDrawTextCodepoints(napi_env env, napi_callback_info info) {
   float fontSize = get_float_arg(args, 4, env, info)
   float spacing = get_float_arg(args, 5, env, info)
   Color tint = get_Color_arg(args, 6, env, info)
+  free(args);
   DrawTextCodepoints(font, codepoints, codepointCount, position, fontSize, spacing, tint);
   return n_undefined;
 }
@@ -3928,6 +4257,7 @@ napi_value NodeRaylibDrawTextCodepoints(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetTextLineSpacing(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int spacing = get_int_arg(args, 0, env, info)
+  free(args);
   SetTextLineSpacing(spacing);
   return n_undefined;
 }
@@ -3938,6 +4268,7 @@ napi_value NodeRaylibMeasureText(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   int fontSize = get_int_arg(args, 1, env, info)
+  free(args);
   ret=MeasureText(text, fontSize);
   return return_int(ret);
 }
@@ -3950,6 +4281,7 @@ napi_value NodeRaylibMeasureTextEx(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 1, env, info)
   float fontSize = get_float_arg(args, 2, env, info)
   float spacing = get_float_arg(args, 3, env, info)
+  free(args);
   ret=MeasureTextEx(font, text, fontSize, spacing);
   return return_Vector2(ret);
 }
@@ -3960,6 +4292,7 @@ napi_value NodeRaylibGetGlyphIndex(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Font font = get_Font_arg(args, 0, env, info)
   int codepoint = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetGlyphIndex(font, codepoint);
   return return_int(ret);
 }
@@ -3970,6 +4303,7 @@ napi_value NodeRaylibGetGlyphInfo(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Font font = get_Font_arg(args, 0, env, info)
   int codepoint = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetGlyphInfo(font, codepoint);
   return return_GlyphInfo(ret);
 }
@@ -3980,6 +4314,7 @@ napi_value NodeRaylibGetGlyphAtlasRec(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Font font = get_Font_arg(args, 0, env, info)
   int codepoint = get_int_arg(args, 1, env, info)
+  free(args);
   ret=GetGlyphAtlasRec(font, codepoint);
   return return_Rectangle(ret);
 }
@@ -3990,6 +4325,7 @@ napi_value NodeRaylibLoadUTF8(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const int * codepoints = get_int_pointer_arg(args, 0, env, info)
   int length = get_int_arg(args, 1, env, info)
+  free(args);
   ret=LoadUTF8(codepoints, length);
   return return_string(ret);
 }
@@ -3998,6 +4334,7 @@ napi_value NodeRaylibLoadUTF8(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadUTF8(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   char * text = get_string_arg(args, 0, env, info)
+  free(args);
   UnloadUTF8(text);
   return n_undefined;
 }
@@ -4008,6 +4345,7 @@ napi_value NodeRaylibLoadCodepoints(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   int * count = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=LoadCodepoints(text, count);
   return return_int_pointer(ret);
 }
@@ -4016,6 +4354,7 @@ napi_value NodeRaylibLoadCodepoints(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadCodepoints(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int * codepoints = get_int_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadCodepoints(codepoints);
   return n_undefined;
 }
@@ -4025,6 +4364,7 @@ napi_value NodeRaylibGetCodepointCount(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=GetCodepointCount(text);
   return return_int(ret);
 }
@@ -4035,6 +4375,7 @@ napi_value NodeRaylibGetCodepoint(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   int * codepointSize = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=GetCodepoint(text, codepointSize);
   return return_int(ret);
 }
@@ -4045,6 +4386,7 @@ napi_value NodeRaylibGetCodepointNext(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   int * codepointSize = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=GetCodepointNext(text, codepointSize);
   return return_int(ret);
 }
@@ -4055,6 +4397,7 @@ napi_value NodeRaylibGetCodepointPrevious(napi_env env, napi_callback_info info)
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   int * codepointSize = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=GetCodepointPrevious(text, codepointSize);
   return return_int(ret);
 }
@@ -4065,6 +4408,7 @@ napi_value NodeRaylibCodepointToUTF8(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int codepoint = get_int_arg(args, 0, env, info)
   int * utf8Size = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=CodepointToUTF8(codepoint, utf8Size);
   return return_string(ret);
 }
@@ -4075,6 +4419,7 @@ napi_value NodeRaylibTextCopy(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   char * dst = get_string_arg(args, 0, env, info)
   const char * src = get_string_arg(args, 1, env, info)
+  free(args);
   ret=TextCopy(dst, src);
   return return_int(ret);
 }
@@ -4085,6 +4430,7 @@ napi_value NodeRaylibTextIsEqual(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text1 = get_string_arg(args, 0, env, info)
   const char * text2 = get_string_arg(args, 1, env, info)
+  free(args);
   ret=TextIsEqual(text1, text2);
   return return_bool(ret);
 }
@@ -4094,6 +4440,7 @@ napi_value NodeRaylibTextLength(napi_env env, napi_callback_info info) {
   unsigned int ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextLength(text);
   return return_uint(ret);
 }
@@ -4104,6 +4451,7 @@ napi_value NodeRaylibTextFormat(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   ... args = get_undefined_arg(args, 1, env, info)
+  free(args);
   ret=TextFormat(text, args);
   return return_string(ret);
 }
@@ -4115,6 +4463,7 @@ napi_value NodeRaylibTextSubtext(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 0, env, info)
   int position = get_int_arg(args, 1, env, info)
   int length = get_int_arg(args, 2, env, info)
+  free(args);
   ret=TextSubtext(text, position, length);
   return return_string(ret);
 }
@@ -4126,6 +4475,7 @@ napi_value NodeRaylibTextReplace(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 0, env, info)
   const char * replace = get_string_arg(args, 1, env, info)
   const char * by = get_string_arg(args, 2, env, info)
+  free(args);
   ret=TextReplace(text, replace, by);
   return return_string(ret);
 }
@@ -4137,6 +4487,7 @@ napi_value NodeRaylibTextInsert(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 0, env, info)
   const char * insert = get_string_arg(args, 1, env, info)
   int position = get_int_arg(args, 2, env, info)
+  free(args);
   ret=TextInsert(text, insert, position);
   return return_string(ret);
 }
@@ -4148,6 +4499,7 @@ napi_value NodeRaylibTextJoin(napi_env env, napi_callback_info info) {
   const char ** textList = get_string_array_arg(args, 0, env, info)
   int count = get_int_arg(args, 1, env, info)
   const char * delimiter = get_string_arg(args, 2, env, info)
+  free(args);
   ret=TextJoin(textList, count, delimiter);
   return return_string(ret);
 }
@@ -4159,6 +4511,7 @@ napi_value NodeRaylibTextSplit(napi_env env, napi_callback_info info) {
   const char * text = get_string_arg(args, 0, env, info)
   char delimiter = get_char_arg(args, 1, env, info)
   int * count = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   ret=TextSplit(text, delimiter, count);
   return return_string_array(ret);
 }
@@ -4169,6 +4522,7 @@ napi_value NodeRaylibTextAppend(napi_env env, napi_callback_info info) {
   char * text = get_string_arg(args, 0, env, info)
   const char * append = get_string_arg(args, 1, env, info)
   int * position = get_int_pointer_arg(args, 2, env, info)
+  free(args);
   TextAppend(text, append, position);
   return n_undefined;
 }
@@ -4179,6 +4533,7 @@ napi_value NodeRaylibTextFindIndex(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * text = get_string_arg(args, 0, env, info)
   const char * find = get_string_arg(args, 1, env, info)
+  free(args);
   ret=TextFindIndex(text, find);
   return return_int(ret);
 }
@@ -4188,6 +4543,7 @@ napi_value NodeRaylibTextToUpper(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToUpper(text);
   return return_string(ret);
 }
@@ -4197,6 +4553,7 @@ napi_value NodeRaylibTextToLower(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToLower(text);
   return return_string(ret);
 }
@@ -4206,6 +4563,7 @@ napi_value NodeRaylibTextToPascal(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToPascal(text);
   return return_string(ret);
 }
@@ -4215,6 +4573,7 @@ napi_value NodeRaylibTextToSnake(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToSnake(text);
   return return_string(ret);
 }
@@ -4224,6 +4583,7 @@ napi_value NodeRaylibTextToCamel(napi_env env, napi_callback_info info) {
   const char * ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToCamel(text);
   return return_string(ret);
 }
@@ -4233,6 +4593,7 @@ napi_value NodeRaylibTextToInteger(napi_env env, napi_callback_info info) {
   int ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToInteger(text);
   return return_int(ret);
 }
@@ -4242,6 +4603,7 @@ napi_value NodeRaylibTextToFloat(napi_env env, napi_callback_info info) {
   float ret;
   napi_value* args = get_args(env, info, 1);
   const char * text = get_string_arg(args, 0, env, info)
+  free(args);
   ret=TextToFloat(text);
   return return_float(ret);
 }
@@ -4252,6 +4614,7 @@ napi_value NodeRaylibDrawLine3D(napi_env env, napi_callback_info info) {
   Vector3 startPos = get_Vector3_arg(args, 0, env, info)
   Vector3 endPos = get_Vector3_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawLine3D(startPos, endPos, color);
   return n_undefined;
 }
@@ -4261,6 +4624,7 @@ napi_value NodeRaylibDrawPoint3D(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Vector3 position = get_Vector3_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   DrawPoint3D(position, color);
   return n_undefined;
 }
@@ -4273,6 +4637,7 @@ napi_value NodeRaylibDrawCircle3D(napi_env env, napi_callback_info info) {
   Vector3 rotationAxis = get_Vector3_arg(args, 2, env, info)
   float rotationAngle = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawCircle3D(center, radius, rotationAxis, rotationAngle, color);
   return n_undefined;
 }
@@ -4284,6 +4649,7 @@ napi_value NodeRaylibDrawTriangle3D(napi_env env, napi_callback_info info) {
   Vector3 v2 = get_Vector3_arg(args, 1, env, info)
   Vector3 v3 = get_Vector3_arg(args, 2, env, info)
   Color color = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawTriangle3D(v1, v2, v3, color);
   return n_undefined;
 }
@@ -4294,6 +4660,7 @@ napi_value NodeRaylibDrawTriangleStrip3D(napi_env env, napi_callback_info info) 
   const Vector3 * points = get_Vector3_pointer_arg(args, 0, env, info)
   int pointCount = get_int_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawTriangleStrip3D(points, pointCount, color);
   return n_undefined;
 }
@@ -4306,6 +4673,7 @@ napi_value NodeRaylibDrawCube(napi_env env, napi_callback_info info) {
   float height = get_float_arg(args, 2, env, info)
   float length = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawCube(position, width, height, length, color);
   return n_undefined;
 }
@@ -4316,6 +4684,7 @@ napi_value NodeRaylibDrawCubeV(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 0, env, info)
   Vector3 size = get_Vector3_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawCubeV(position, size, color);
   return n_undefined;
 }
@@ -4328,6 +4697,7 @@ napi_value NodeRaylibDrawCubeWires(napi_env env, napi_callback_info info) {
   float height = get_float_arg(args, 2, env, info)
   float length = get_float_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawCubeWires(position, width, height, length, color);
   return n_undefined;
 }
@@ -4338,6 +4708,7 @@ napi_value NodeRaylibDrawCubeWiresV(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 0, env, info)
   Vector3 size = get_Vector3_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawCubeWiresV(position, size, color);
   return n_undefined;
 }
@@ -4348,6 +4719,7 @@ napi_value NodeRaylibDrawSphere(napi_env env, napi_callback_info info) {
   Vector3 centerPos = get_Vector3_arg(args, 0, env, info)
   float radius = get_float_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawSphere(centerPos, radius, color);
   return n_undefined;
 }
@@ -4360,6 +4732,7 @@ napi_value NodeRaylibDrawSphereEx(napi_env env, napi_callback_info info) {
   int rings = get_int_arg(args, 2, env, info)
   int slices = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawSphereEx(centerPos, radius, rings, slices, color);
   return n_undefined;
 }
@@ -4372,6 +4745,7 @@ napi_value NodeRaylibDrawSphereWires(napi_env env, napi_callback_info info) {
   int rings = get_int_arg(args, 2, env, info)
   int slices = get_int_arg(args, 3, env, info)
   Color color = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawSphereWires(centerPos, radius, rings, slices, color);
   return n_undefined;
 }
@@ -4385,6 +4759,7 @@ napi_value NodeRaylibDrawCylinder(napi_env env, napi_callback_info info) {
   float height = get_float_arg(args, 3, env, info)
   int slices = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCylinder(position, radiusTop, radiusBottom, height, slices, color);
   return n_undefined;
 }
@@ -4398,6 +4773,7 @@ napi_value NodeRaylibDrawCylinderEx(napi_env env, napi_callback_info info) {
   float endRadius = get_float_arg(args, 3, env, info)
   int sides = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCylinderEx(startPos, endPos, startRadius, endRadius, sides, color);
   return n_undefined;
 }
@@ -4411,6 +4787,7 @@ napi_value NodeRaylibDrawCylinderWires(napi_env env, napi_callback_info info) {
   float height = get_float_arg(args, 3, env, info)
   int slices = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCylinderWires(position, radiusTop, radiusBottom, height, slices, color);
   return n_undefined;
 }
@@ -4424,6 +4801,7 @@ napi_value NodeRaylibDrawCylinderWiresEx(napi_env env, napi_callback_info info) 
   float endRadius = get_float_arg(args, 3, env, info)
   int sides = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCylinderWiresEx(startPos, endPos, startRadius, endRadius, sides, color);
   return n_undefined;
 }
@@ -4437,6 +4815,7 @@ napi_value NodeRaylibDrawCapsule(napi_env env, napi_callback_info info) {
   int slices = get_int_arg(args, 3, env, info)
   int rings = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCapsule(startPos, endPos, radius, slices, rings, color);
   return n_undefined;
 }
@@ -4450,6 +4829,7 @@ napi_value NodeRaylibDrawCapsuleWires(napi_env env, napi_callback_info info) {
   int slices = get_int_arg(args, 3, env, info)
   int rings = get_int_arg(args, 4, env, info)
   Color color = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawCapsuleWires(startPos, endPos, radius, slices, rings, color);
   return n_undefined;
 }
@@ -4460,6 +4840,7 @@ napi_value NodeRaylibDrawPlane(napi_env env, napi_callback_info info) {
   Vector3 centerPos = get_Vector3_arg(args, 0, env, info)
   Vector2 size = get_Vector2_arg(args, 1, env, info)
   Color color = get_Color_arg(args, 2, env, info)
+  free(args);
   DrawPlane(centerPos, size, color);
   return n_undefined;
 }
@@ -4469,6 +4850,7 @@ napi_value NodeRaylibDrawRay(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Ray ray = get_Ray_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   DrawRay(ray, color);
   return n_undefined;
 }
@@ -4478,6 +4860,7 @@ napi_value NodeRaylibDrawGrid(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int slices = get_int_arg(args, 0, env, info)
   float spacing = get_float_arg(args, 1, env, info)
+  free(args);
   DrawGrid(slices, spacing);
   return n_undefined;
 }
@@ -4487,6 +4870,7 @@ napi_value NodeRaylibLoadModel(napi_env env, napi_callback_info info) {
   Model ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadModel(fileName);
   return return_Model(ret);
 }
@@ -4496,6 +4880,7 @@ napi_value NodeRaylibLoadModelFromMesh(napi_env env, napi_callback_info info) {
   Model ret;
   napi_value* args = get_args(env, info, 1);
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
+  free(args);
   ret=LoadModelFromMesh(mesh);
   return return_Model(ret);
 }
@@ -4505,6 +4890,7 @@ napi_value NodeRaylibIsModelValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Model model = get_Model_arg(args, 0, env, info)
+  free(args);
   ret=IsModelValid(model);
   return return_bool(ret);
 }
@@ -4513,6 +4899,7 @@ napi_value NodeRaylibIsModelValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadModel(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Model model = get_Model_arg(args, 0, env, info)
+  free(args);
   UnloadModel(model);
   return n_undefined;
 }
@@ -4522,6 +4909,7 @@ napi_value NodeRaylibGetModelBoundingBox(napi_env env, napi_callback_info info) 
   BoundingBox ret;
   napi_value* args = get_args(env, info, 1);
   Model model = get_Model_arg(args, 0, env, info)
+  free(args);
   ret=GetModelBoundingBox(model);
   return return_BoundingBox(ret);
 }
@@ -4533,6 +4921,7 @@ napi_value NodeRaylibDrawModel(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 1, env, info)
   float scale = get_float_arg(args, 2, env, info)
   Color tint = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawModel(model, position, scale, tint);
   return n_undefined;
 }
@@ -4546,6 +4935,7 @@ napi_value NodeRaylibDrawModelEx(napi_env env, napi_callback_info info) {
   float rotationAngle = get_float_arg(args, 3, env, info)
   Vector3 scale = get_Vector3_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawModelEx(model, position, rotationAxis, rotationAngle, scale, tint);
   return n_undefined;
 }
@@ -4557,6 +4947,7 @@ napi_value NodeRaylibDrawModelWires(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 1, env, info)
   float scale = get_float_arg(args, 2, env, info)
   Color tint = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawModelWires(model, position, scale, tint);
   return n_undefined;
 }
@@ -4570,6 +4961,7 @@ napi_value NodeRaylibDrawModelWiresEx(napi_env env, napi_callback_info info) {
   float rotationAngle = get_float_arg(args, 3, env, info)
   Vector3 scale = get_Vector3_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawModelWiresEx(model, position, rotationAxis, rotationAngle, scale, tint);
   return n_undefined;
 }
@@ -4581,6 +4973,7 @@ napi_value NodeRaylibDrawModelPoints(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 1, env, info)
   float scale = get_float_arg(args, 2, env, info)
   Color tint = get_Color_arg(args, 3, env, info)
+  free(args);
   DrawModelPoints(model, position, scale, tint);
   return n_undefined;
 }
@@ -4594,6 +4987,7 @@ napi_value NodeRaylibDrawModelPointsEx(napi_env env, napi_callback_info info) {
   float rotationAngle = get_float_arg(args, 3, env, info)
   Vector3 scale = get_Vector3_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawModelPointsEx(model, position, rotationAxis, rotationAngle, scale, tint);
   return n_undefined;
 }
@@ -4603,6 +4997,7 @@ napi_value NodeRaylibDrawBoundingBox(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   BoundingBox box = get_BoundingBox_arg(args, 0, env, info)
   Color color = get_Color_arg(args, 1, env, info)
+  free(args);
   DrawBoundingBox(box, color);
   return n_undefined;
 }
@@ -4615,6 +5010,7 @@ napi_value NodeRaylibDrawBillboard(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 2, env, info)
   float scale = get_float_arg(args, 3, env, info)
   Color tint = get_Color_arg(args, 4, env, info)
+  free(args);
   DrawBillboard(camera, texture, position, scale, tint);
   return n_undefined;
 }
@@ -4628,6 +5024,7 @@ napi_value NodeRaylibDrawBillboardRec(napi_env env, napi_callback_info info) {
   Vector3 position = get_Vector3_arg(args, 3, env, info)
   Vector2 size = get_Vector2_arg(args, 4, env, info)
   Color tint = get_Color_arg(args, 5, env, info)
+  free(args);
   DrawBillboardRec(camera, texture, source, position, size, tint);
   return n_undefined;
 }
@@ -4644,6 +5041,7 @@ napi_value NodeRaylibDrawBillboardPro(napi_env env, napi_callback_info info) {
   Vector2 origin = get_Vector2_arg(args, 6, env, info)
   float rotation = get_float_arg(args, 7, env, info)
   Color tint = get_Color_arg(args, 8, env, info)
+  free(args);
   DrawBillboardPro(camera, texture, source, position, up, size, origin, rotation, tint);
   return n_undefined;
 }
@@ -4653,6 +5051,7 @@ napi_value NodeRaylibUploadMesh(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Mesh * mesh = get_Mesh_pointer_arg(args, 0, env, info)
   bool dynamic = get_bool_arg(args, 1, env, info)
+  free(args);
   UploadMesh(mesh, dynamic);
   return n_undefined;
 }
@@ -4665,6 +5064,7 @@ napi_value NodeRaylibUpdateMeshBuffer(napi_env env, napi_callback_info info) {
   const void * data = get_undefined_arg(args, 2, env, info)
   int dataSize = get_int_arg(args, 3, env, info)
   int offset = get_int_arg(args, 4, env, info)
+  free(args);
   UpdateMeshBuffer(mesh, index, data, dataSize, offset);
   return n_undefined;
 }
@@ -4673,6 +5073,7 @@ napi_value NodeRaylibUpdateMeshBuffer(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadMesh(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
+  free(args);
   UnloadMesh(mesh);
   return n_undefined;
 }
@@ -4683,6 +5084,7 @@ napi_value NodeRaylibDrawMesh(napi_env env, napi_callback_info info) {
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
   Material material = get_Material_arg(args, 1, env, info)
   Matrix transform = get_Matrix_arg(args, 2, env, info)
+  free(args);
   DrawMesh(mesh, material, transform);
   return n_undefined;
 }
@@ -4694,6 +5096,7 @@ napi_value NodeRaylibDrawMeshInstanced(napi_env env, napi_callback_info info) {
   Material material = get_Material_arg(args, 1, env, info)
   const Matrix * transforms = get_Matrix_pointer_arg(args, 2, env, info)
   int instances = get_int_arg(args, 3, env, info)
+  free(args);
   DrawMeshInstanced(mesh, material, transforms, instances);
   return n_undefined;
 }
@@ -4703,6 +5106,7 @@ napi_value NodeRaylibGetMeshBoundingBox(napi_env env, napi_callback_info info) {
   BoundingBox ret;
   napi_value* args = get_args(env, info, 1);
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
+  free(args);
   ret=GetMeshBoundingBox(mesh);
   return return_BoundingBox(ret);
 }
@@ -4711,6 +5115,7 @@ napi_value NodeRaylibGetMeshBoundingBox(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibGenMeshTangents(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Mesh * mesh = get_Mesh_pointer_arg(args, 0, env, info)
+  free(args);
   GenMeshTangents(mesh);
   return n_undefined;
 }
@@ -4721,6 +5126,7 @@ napi_value NodeRaylibExportMesh(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportMesh(mesh, fileName);
   return return_bool(ret);
 }
@@ -4731,6 +5137,7 @@ napi_value NodeRaylibExportMeshAsCode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Mesh mesh = get_Mesh_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportMeshAsCode(mesh, fileName);
   return return_bool(ret);
 }
@@ -4741,6 +5148,7 @@ napi_value NodeRaylibGenMeshPoly(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   int sides = get_int_arg(args, 0, env, info)
   float radius = get_float_arg(args, 1, env, info)
+  free(args);
   ret=GenMeshPoly(sides, radius);
   return return_Mesh(ret);
 }
@@ -4753,6 +5161,7 @@ napi_value NodeRaylibGenMeshPlane(napi_env env, napi_callback_info info) {
   float length = get_float_arg(args, 1, env, info)
   int resX = get_int_arg(args, 2, env, info)
   int resZ = get_int_arg(args, 3, env, info)
+  free(args);
   ret=GenMeshPlane(width, length, resX, resZ);
   return return_Mesh(ret);
 }
@@ -4764,6 +5173,7 @@ napi_value NodeRaylibGenMeshCube(napi_env env, napi_callback_info info) {
   float width = get_float_arg(args, 0, env, info)
   float height = get_float_arg(args, 1, env, info)
   float length = get_float_arg(args, 2, env, info)
+  free(args);
   ret=GenMeshCube(width, height, length);
   return return_Mesh(ret);
 }
@@ -4775,6 +5185,7 @@ napi_value NodeRaylibGenMeshSphere(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 0, env, info)
   int rings = get_int_arg(args, 1, env, info)
   int slices = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GenMeshSphere(radius, rings, slices);
   return return_Mesh(ret);
 }
@@ -4786,6 +5197,7 @@ napi_value NodeRaylibGenMeshHemiSphere(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 0, env, info)
   int rings = get_int_arg(args, 1, env, info)
   int slices = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GenMeshHemiSphere(radius, rings, slices);
   return return_Mesh(ret);
 }
@@ -4797,6 +5209,7 @@ napi_value NodeRaylibGenMeshCylinder(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 0, env, info)
   float height = get_float_arg(args, 1, env, info)
   int slices = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GenMeshCylinder(radius, height, slices);
   return return_Mesh(ret);
 }
@@ -4808,6 +5221,7 @@ napi_value NodeRaylibGenMeshCone(napi_env env, napi_callback_info info) {
   float radius = get_float_arg(args, 0, env, info)
   float height = get_float_arg(args, 1, env, info)
   int slices = get_int_arg(args, 2, env, info)
+  free(args);
   ret=GenMeshCone(radius, height, slices);
   return return_Mesh(ret);
 }
@@ -4820,6 +5234,7 @@ napi_value NodeRaylibGenMeshTorus(napi_env env, napi_callback_info info) {
   float size = get_float_arg(args, 1, env, info)
   int radSeg = get_int_arg(args, 2, env, info)
   int sides = get_int_arg(args, 3, env, info)
+  free(args);
   ret=GenMeshTorus(radius, size, radSeg, sides);
   return return_Mesh(ret);
 }
@@ -4832,6 +5247,7 @@ napi_value NodeRaylibGenMeshKnot(napi_env env, napi_callback_info info) {
   float size = get_float_arg(args, 1, env, info)
   int radSeg = get_int_arg(args, 2, env, info)
   int sides = get_int_arg(args, 3, env, info)
+  free(args);
   ret=GenMeshKnot(radius, size, radSeg, sides);
   return return_Mesh(ret);
 }
@@ -4842,6 +5258,7 @@ napi_value NodeRaylibGenMeshHeightmap(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image heightmap = get_Image_arg(args, 0, env, info)
   Vector3 size = get_Vector3_arg(args, 1, env, info)
+  free(args);
   ret=GenMeshHeightmap(heightmap, size);
   return return_Mesh(ret);
 }
@@ -4852,6 +5269,7 @@ napi_value NodeRaylibGenMeshCubicmap(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Image cubicmap = get_Image_arg(args, 0, env, info)
   Vector3 cubeSize = get_Vector3_arg(args, 1, env, info)
+  free(args);
   ret=GenMeshCubicmap(cubicmap, cubeSize);
   return return_Mesh(ret);
 }
@@ -4862,6 +5280,7 @@ napi_value NodeRaylibLoadMaterials(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   int * materialCount = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=LoadMaterials(fileName, materialCount);
   return return_Material_pointer(ret);
 }
@@ -4878,6 +5297,7 @@ napi_value NodeRaylibIsMaterialValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Material material = get_Material_arg(args, 0, env, info)
+  free(args);
   ret=IsMaterialValid(material);
   return return_bool(ret);
 }
@@ -4886,6 +5306,7 @@ napi_value NodeRaylibIsMaterialValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadMaterial(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Material material = get_Material_arg(args, 0, env, info)
+  free(args);
   UnloadMaterial(material);
   return n_undefined;
 }
@@ -4896,6 +5317,7 @@ napi_value NodeRaylibSetMaterialTexture(napi_env env, napi_callback_info info) {
   Material * material = get_Material_pointer_arg(args, 0, env, info)
   int mapType = get_int_arg(args, 1, env, info)
   Texture2D texture = get_Texture2D_arg(args, 2, env, info)
+  free(args);
   SetMaterialTexture(material, mapType, texture);
   return n_undefined;
 }
@@ -4906,6 +5328,7 @@ napi_value NodeRaylibSetModelMeshMaterial(napi_env env, napi_callback_info info)
   Model * model = get_Model_pointer_arg(args, 0, env, info)
   int meshId = get_int_arg(args, 1, env, info)
   int materialId = get_int_arg(args, 2, env, info)
+  free(args);
   SetModelMeshMaterial(model, meshId, materialId);
   return n_undefined;
 }
@@ -4916,6 +5339,7 @@ napi_value NodeRaylibLoadModelAnimations(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   const char * fileName = get_string_arg(args, 0, env, info)
   int * animCount = get_int_pointer_arg(args, 1, env, info)
+  free(args);
   ret=LoadModelAnimations(fileName, animCount);
   return return_ModelAnimation_pointer(ret);
 }
@@ -4926,6 +5350,7 @@ napi_value NodeRaylibUpdateModelAnimation(napi_env env, napi_callback_info info)
   Model model = get_Model_arg(args, 0, env, info)
   ModelAnimation anim = get_ModelAnimation_arg(args, 1, env, info)
   int frame = get_int_arg(args, 2, env, info)
+  free(args);
   UpdateModelAnimation(model, anim, frame);
   return n_undefined;
 }
@@ -4936,6 +5361,7 @@ napi_value NodeRaylibUpdateModelAnimationBones(napi_env env, napi_callback_info 
   Model model = get_Model_arg(args, 0, env, info)
   ModelAnimation anim = get_ModelAnimation_arg(args, 1, env, info)
   int frame = get_int_arg(args, 2, env, info)
+  free(args);
   UpdateModelAnimationBones(model, anim, frame);
   return n_undefined;
 }
@@ -4944,6 +5370,7 @@ napi_value NodeRaylibUpdateModelAnimationBones(napi_env env, napi_callback_info 
 napi_value NodeRaylibUnloadModelAnimation(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   ModelAnimation anim = get_ModelAnimation_arg(args, 0, env, info)
+  free(args);
   UnloadModelAnimation(anim);
   return n_undefined;
 }
@@ -4953,6 +5380,7 @@ napi_value NodeRaylibUnloadModelAnimations(napi_env env, napi_callback_info info
   napi_value* args = get_args(env, info, 2);
   ModelAnimation * animations = get_ModelAnimation_pointer_arg(args, 0, env, info)
   int animCount = get_int_arg(args, 1, env, info)
+  free(args);
   UnloadModelAnimations(animations, animCount);
   return n_undefined;
 }
@@ -4963,6 +5391,7 @@ napi_value NodeRaylibIsModelAnimationValid(napi_env env, napi_callback_info info
   napi_value* args = get_args(env, info, 2);
   Model model = get_Model_arg(args, 0, env, info)
   ModelAnimation anim = get_ModelAnimation_arg(args, 1, env, info)
+  free(args);
   ret=IsModelAnimationValid(model, anim);
   return return_bool(ret);
 }
@@ -4975,6 +5404,7 @@ napi_value NodeRaylibCheckCollisionSpheres(napi_env env, napi_callback_info info
   float radius1 = get_float_arg(args, 1, env, info)
   Vector3 center2 = get_Vector3_arg(args, 2, env, info)
   float radius2 = get_float_arg(args, 3, env, info)
+  free(args);
   ret=CheckCollisionSpheres(center1, radius1, center2, radius2);
   return return_bool(ret);
 }
@@ -4985,6 +5415,7 @@ napi_value NodeRaylibCheckCollisionBoxes(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   BoundingBox box1 = get_BoundingBox_arg(args, 0, env, info)
   BoundingBox box2 = get_BoundingBox_arg(args, 1, env, info)
+  free(args);
   ret=CheckCollisionBoxes(box1, box2);
   return return_bool(ret);
 }
@@ -4996,6 +5427,7 @@ napi_value NodeRaylibCheckCollisionBoxSphere(napi_env env, napi_callback_info in
   BoundingBox box = get_BoundingBox_arg(args, 0, env, info)
   Vector3 center = get_Vector3_arg(args, 1, env, info)
   float radius = get_float_arg(args, 2, env, info)
+  free(args);
   ret=CheckCollisionBoxSphere(box, center, radius);
   return return_bool(ret);
 }
@@ -5007,6 +5439,7 @@ napi_value NodeRaylibGetRayCollisionSphere(napi_env env, napi_callback_info info
   Ray ray = get_Ray_arg(args, 0, env, info)
   Vector3 center = get_Vector3_arg(args, 1, env, info)
   float radius = get_float_arg(args, 2, env, info)
+  free(args);
   ret=GetRayCollisionSphere(ray, center, radius);
   return return_RayCollision(ret);
 }
@@ -5017,6 +5450,7 @@ napi_value NodeRaylibGetRayCollisionBox(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Ray ray = get_Ray_arg(args, 0, env, info)
   BoundingBox box = get_BoundingBox_arg(args, 1, env, info)
+  free(args);
   ret=GetRayCollisionBox(ray, box);
   return return_RayCollision(ret);
 }
@@ -5028,6 +5462,7 @@ napi_value NodeRaylibGetRayCollisionMesh(napi_env env, napi_callback_info info) 
   Ray ray = get_Ray_arg(args, 0, env, info)
   Mesh mesh = get_Mesh_arg(args, 1, env, info)
   Matrix transform = get_Matrix_arg(args, 2, env, info)
+  free(args);
   ret=GetRayCollisionMesh(ray, mesh, transform);
   return return_RayCollision(ret);
 }
@@ -5040,6 +5475,7 @@ napi_value NodeRaylibGetRayCollisionTriangle(napi_env env, napi_callback_info in
   Vector3 p1 = get_Vector3_arg(args, 1, env, info)
   Vector3 p2 = get_Vector3_arg(args, 2, env, info)
   Vector3 p3 = get_Vector3_arg(args, 3, env, info)
+  free(args);
   ret=GetRayCollisionTriangle(ray, p1, p2, p3);
   return return_RayCollision(ret);
 }
@@ -5053,6 +5489,7 @@ napi_value NodeRaylibGetRayCollisionQuad(napi_env env, napi_callback_info info) 
   Vector3 p2 = get_Vector3_arg(args, 2, env, info)
   Vector3 p3 = get_Vector3_arg(args, 3, env, info)
   Vector3 p4 = get_Vector3_arg(args, 4, env, info)
+  free(args);
   ret=GetRayCollisionQuad(ray, p1, p2, p3, p4);
   return return_RayCollision(ret);
 }
@@ -5080,6 +5517,7 @@ napi_value NodeRaylibIsAudioDeviceReady(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetMasterVolume(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   float volume = get_float_arg(args, 0, env, info)
+  free(args);
   SetMasterVolume(volume);
   return n_undefined;
 }
@@ -5096,6 +5534,7 @@ napi_value NodeRaylibLoadWave(napi_env env, napi_callback_info info) {
   Wave ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadWave(fileName);
   return return_Wave(ret);
 }
@@ -5107,6 +5546,7 @@ napi_value NodeRaylibLoadWaveFromMemory(napi_env env, napi_callback_info info) {
   const char * fileType = get_string_arg(args, 0, env, info)
   const unsigned char * fileData = get_uchar_pointer_arg(args, 1, env, info)
   int dataSize = get_int_arg(args, 2, env, info)
+  free(args);
   ret=LoadWaveFromMemory(fileType, fileData, dataSize);
   return return_Wave(ret);
 }
@@ -5116,6 +5556,7 @@ napi_value NodeRaylibIsWaveValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Wave wave = get_Wave_arg(args, 0, env, info)
+  free(args);
   ret=IsWaveValid(wave);
   return return_bool(ret);
 }
@@ -5125,6 +5566,7 @@ napi_value NodeRaylibLoadSound(napi_env env, napi_callback_info info) {
   Sound ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadSound(fileName);
   return return_Sound(ret);
 }
@@ -5134,6 +5576,7 @@ napi_value NodeRaylibLoadSoundFromWave(napi_env env, napi_callback_info info) {
   Sound ret;
   napi_value* args = get_args(env, info, 1);
   Wave wave = get_Wave_arg(args, 0, env, info)
+  free(args);
   ret=LoadSoundFromWave(wave);
   return return_Sound(ret);
 }
@@ -5143,6 +5586,7 @@ napi_value NodeRaylibLoadSoundAlias(napi_env env, napi_callback_info info) {
   Sound ret;
   napi_value* args = get_args(env, info, 1);
   Sound source = get_Sound_arg(args, 0, env, info)
+  free(args);
   ret=LoadSoundAlias(source);
   return return_Sound(ret);
 }
@@ -5152,6 +5596,7 @@ napi_value NodeRaylibIsSoundValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   ret=IsSoundValid(sound);
   return return_bool(ret);
 }
@@ -5162,6 +5607,7 @@ napi_value NodeRaylibUpdateSound(napi_env env, napi_callback_info info) {
   Sound sound = get_Sound_arg(args, 0, env, info)
   const void * data = get_undefined_arg(args, 1, env, info)
   int sampleCount = get_int_arg(args, 2, env, info)
+  free(args);
   UpdateSound(sound, data, sampleCount);
   return n_undefined;
 }
@@ -5170,6 +5616,7 @@ napi_value NodeRaylibUpdateSound(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadWave(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Wave wave = get_Wave_arg(args, 0, env, info)
+  free(args);
   UnloadWave(wave);
   return n_undefined;
 }
@@ -5178,6 +5625,7 @@ napi_value NodeRaylibUnloadWave(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadSound(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   UnloadSound(sound);
   return n_undefined;
 }
@@ -5186,6 +5634,7 @@ napi_value NodeRaylibUnloadSound(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadSoundAlias(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound alias = get_Sound_arg(args, 0, env, info)
+  free(args);
   UnloadSoundAlias(alias);
   return n_undefined;
 }
@@ -5196,6 +5645,7 @@ napi_value NodeRaylibExportWave(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Wave wave = get_Wave_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportWave(wave, fileName);
   return return_bool(ret);
 }
@@ -5206,6 +5656,7 @@ napi_value NodeRaylibExportWaveAsCode(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Wave wave = get_Wave_arg(args, 0, env, info)
   const char * fileName = get_string_arg(args, 1, env, info)
+  free(args);
   ret=ExportWaveAsCode(wave, fileName);
   return return_bool(ret);
 }
@@ -5214,6 +5665,7 @@ napi_value NodeRaylibExportWaveAsCode(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibPlaySound(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   PlaySound(sound);
   return n_undefined;
 }
@@ -5222,6 +5674,7 @@ napi_value NodeRaylibPlaySound(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibStopSound(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   StopSound(sound);
   return n_undefined;
 }
@@ -5230,6 +5683,7 @@ napi_value NodeRaylibStopSound(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibPauseSound(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   PauseSound(sound);
   return n_undefined;
 }
@@ -5238,6 +5692,7 @@ napi_value NodeRaylibPauseSound(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibResumeSound(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   ResumeSound(sound);
   return n_undefined;
 }
@@ -5247,6 +5702,7 @@ napi_value NodeRaylibIsSoundPlaying(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Sound sound = get_Sound_arg(args, 0, env, info)
+  free(args);
   ret=IsSoundPlaying(sound);
   return return_bool(ret);
 }
@@ -5256,6 +5712,7 @@ napi_value NodeRaylibSetSoundVolume(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Sound sound = get_Sound_arg(args, 0, env, info)
   float volume = get_float_arg(args, 1, env, info)
+  free(args);
   SetSoundVolume(sound, volume);
   return n_undefined;
 }
@@ -5265,6 +5722,7 @@ napi_value NodeRaylibSetSoundPitch(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Sound sound = get_Sound_arg(args, 0, env, info)
   float pitch = get_float_arg(args, 1, env, info)
+  free(args);
   SetSoundPitch(sound, pitch);
   return n_undefined;
 }
@@ -5274,6 +5732,7 @@ napi_value NodeRaylibSetSoundPan(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Sound sound = get_Sound_arg(args, 0, env, info)
   float pan = get_float_arg(args, 1, env, info)
+  free(args);
   SetSoundPan(sound, pan);
   return n_undefined;
 }
@@ -5283,6 +5742,7 @@ napi_value NodeRaylibWaveCopy(napi_env env, napi_callback_info info) {
   Wave ret;
   napi_value* args = get_args(env, info, 1);
   Wave wave = get_Wave_arg(args, 0, env, info)
+  free(args);
   ret=WaveCopy(wave);
   return return_Wave(ret);
 }
@@ -5293,6 +5753,7 @@ napi_value NodeRaylibWaveCrop(napi_env env, napi_callback_info info) {
   Wave * wave = get_Wave_pointer_arg(args, 0, env, info)
   int initFrame = get_int_arg(args, 1, env, info)
   int finalFrame = get_int_arg(args, 2, env, info)
+  free(args);
   WaveCrop(wave, initFrame, finalFrame);
   return n_undefined;
 }
@@ -5304,6 +5765,7 @@ napi_value NodeRaylibWaveFormat(napi_env env, napi_callback_info info) {
   int sampleRate = get_int_arg(args, 1, env, info)
   int sampleSize = get_int_arg(args, 2, env, info)
   int channels = get_int_arg(args, 3, env, info)
+  free(args);
   WaveFormat(wave, sampleRate, sampleSize, channels);
   return n_undefined;
 }
@@ -5313,6 +5775,7 @@ napi_value NodeRaylibLoadWaveSamples(napi_env env, napi_callback_info info) {
   float * ret;
   napi_value* args = get_args(env, info, 1);
   Wave wave = get_Wave_arg(args, 0, env, info)
+  free(args);
   ret=LoadWaveSamples(wave);
   return return_float_pointer(ret);
 }
@@ -5321,6 +5784,7 @@ napi_value NodeRaylibLoadWaveSamples(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadWaveSamples(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   float * samples = get_float_pointer_arg(args, 0, env, info)
+  free(args);
   UnloadWaveSamples(samples);
   return n_undefined;
 }
@@ -5330,6 +5794,7 @@ napi_value NodeRaylibLoadMusicStream(napi_env env, napi_callback_info info) {
   Music ret;
   napi_value* args = get_args(env, info, 1);
   const char * fileName = get_string_arg(args, 0, env, info)
+  free(args);
   ret=LoadMusicStream(fileName);
   return return_Music(ret);
 }
@@ -5341,6 +5806,7 @@ napi_value NodeRaylibLoadMusicStreamFromMemory(napi_env env, napi_callback_info 
   const char * fileType = get_string_arg(args, 0, env, info)
   const unsigned char * data = get_uchar_pointer_arg(args, 1, env, info)
   int dataSize = get_int_arg(args, 2, env, info)
+  free(args);
   ret=LoadMusicStreamFromMemory(fileType, data, dataSize);
   return return_Music(ret);
 }
@@ -5350,6 +5816,7 @@ napi_value NodeRaylibIsMusicValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   ret=IsMusicValid(music);
   return return_bool(ret);
 }
@@ -5358,6 +5825,7 @@ napi_value NodeRaylibIsMusicValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   UnloadMusicStream(music);
   return n_undefined;
 }
@@ -5366,6 +5834,7 @@ napi_value NodeRaylibUnloadMusicStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibPlayMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   PlayMusicStream(music);
   return n_undefined;
 }
@@ -5375,6 +5844,7 @@ napi_value NodeRaylibIsMusicStreamPlaying(napi_env env, napi_callback_info info)
   bool ret;
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   ret=IsMusicStreamPlaying(music);
   return return_bool(ret);
 }
@@ -5383,6 +5853,7 @@ napi_value NodeRaylibIsMusicStreamPlaying(napi_env env, napi_callback_info info)
 napi_value NodeRaylibUpdateMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   UpdateMusicStream(music);
   return n_undefined;
 }
@@ -5391,6 +5862,7 @@ napi_value NodeRaylibUpdateMusicStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibStopMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   StopMusicStream(music);
   return n_undefined;
 }
@@ -5399,6 +5871,7 @@ napi_value NodeRaylibStopMusicStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibPauseMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   PauseMusicStream(music);
   return n_undefined;
 }
@@ -5407,6 +5880,7 @@ napi_value NodeRaylibPauseMusicStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibResumeMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   ResumeMusicStream(music);
   return n_undefined;
 }
@@ -5416,6 +5890,7 @@ napi_value NodeRaylibSeekMusicStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Music music = get_Music_arg(args, 0, env, info)
   float position = get_float_arg(args, 1, env, info)
+  free(args);
   SeekMusicStream(music, position);
   return n_undefined;
 }
@@ -5425,6 +5900,7 @@ napi_value NodeRaylibSetMusicVolume(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Music music = get_Music_arg(args, 0, env, info)
   float volume = get_float_arg(args, 1, env, info)
+  free(args);
   SetMusicVolume(music, volume);
   return n_undefined;
 }
@@ -5434,6 +5910,7 @@ napi_value NodeRaylibSetMusicPitch(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Music music = get_Music_arg(args, 0, env, info)
   float pitch = get_float_arg(args, 1, env, info)
+  free(args);
   SetMusicPitch(music, pitch);
   return n_undefined;
 }
@@ -5443,6 +5920,7 @@ napi_value NodeRaylibSetMusicPan(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   Music music = get_Music_arg(args, 0, env, info)
   float pan = get_float_arg(args, 1, env, info)
+  free(args);
   SetMusicPan(music, pan);
   return n_undefined;
 }
@@ -5452,6 +5930,7 @@ napi_value NodeRaylibGetMusicTimeLength(napi_env env, napi_callback_info info) {
   float ret;
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   ret=GetMusicTimeLength(music);
   return return_float(ret);
 }
@@ -5461,6 +5940,7 @@ napi_value NodeRaylibGetMusicTimePlayed(napi_env env, napi_callback_info info) {
   float ret;
   napi_value* args = get_args(env, info, 1);
   Music music = get_Music_arg(args, 0, env, info)
+  free(args);
   ret=GetMusicTimePlayed(music);
   return return_float(ret);
 }
@@ -5472,6 +5952,7 @@ napi_value NodeRaylibLoadAudioStream(napi_env env, napi_callback_info info) {
   unsigned int sampleRate = get_uint_arg(args, 0, env, info)
   unsigned int sampleSize = get_uint_arg(args, 1, env, info)
   unsigned int channels = get_uint_arg(args, 2, env, info)
+  free(args);
   ret=LoadAudioStream(sampleRate, sampleSize, channels);
   return return_AudioStream(ret);
 }
@@ -5481,6 +5962,7 @@ napi_value NodeRaylibIsAudioStreamValid(napi_env env, napi_callback_info info) {
   bool ret;
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   ret=IsAudioStreamValid(stream);
   return return_bool(ret);
 }
@@ -5489,6 +5971,7 @@ napi_value NodeRaylibIsAudioStreamValid(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibUnloadAudioStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   UnloadAudioStream(stream);
   return n_undefined;
 }
@@ -5499,6 +5982,7 @@ napi_value NodeRaylibUpdateAudioStream(napi_env env, napi_callback_info info) {
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   const void * data = get_undefined_arg(args, 1, env, info)
   int frameCount = get_int_arg(args, 2, env, info)
+  free(args);
   UpdateAudioStream(stream, data, frameCount);
   return n_undefined;
 }
@@ -5508,6 +5992,7 @@ napi_value NodeRaylibIsAudioStreamProcessed(napi_env env, napi_callback_info inf
   bool ret;
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   ret=IsAudioStreamProcessed(stream);
   return return_bool(ret);
 }
@@ -5516,6 +6001,7 @@ napi_value NodeRaylibIsAudioStreamProcessed(napi_env env, napi_callback_info inf
 napi_value NodeRaylibPlayAudioStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   PlayAudioStream(stream);
   return n_undefined;
 }
@@ -5524,6 +6010,7 @@ napi_value NodeRaylibPlayAudioStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibPauseAudioStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   PauseAudioStream(stream);
   return n_undefined;
 }
@@ -5532,6 +6019,7 @@ napi_value NodeRaylibPauseAudioStream(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibResumeAudioStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   ResumeAudioStream(stream);
   return n_undefined;
 }
@@ -5541,6 +6029,7 @@ napi_value NodeRaylibIsAudioStreamPlaying(napi_env env, napi_callback_info info)
   bool ret;
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   ret=IsAudioStreamPlaying(stream);
   return return_bool(ret);
 }
@@ -5549,6 +6038,7 @@ napi_value NodeRaylibIsAudioStreamPlaying(napi_env env, napi_callback_info info)
 napi_value NodeRaylibStopAudioStream(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
+  free(args);
   StopAudioStream(stream);
   return n_undefined;
 }
@@ -5558,6 +6048,7 @@ napi_value NodeRaylibSetAudioStreamVolume(napi_env env, napi_callback_info info)
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   float volume = get_float_arg(args, 1, env, info)
+  free(args);
   SetAudioStreamVolume(stream, volume);
   return n_undefined;
 }
@@ -5567,6 +6058,7 @@ napi_value NodeRaylibSetAudioStreamPitch(napi_env env, napi_callback_info info) 
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   float pitch = get_float_arg(args, 1, env, info)
+  free(args);
   SetAudioStreamPitch(stream, pitch);
   return n_undefined;
 }
@@ -5576,6 +6068,7 @@ napi_value NodeRaylibSetAudioStreamPan(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   float pan = get_float_arg(args, 1, env, info)
+  free(args);
   SetAudioStreamPan(stream, pan);
   return n_undefined;
 }
@@ -5584,6 +6077,7 @@ napi_value NodeRaylibSetAudioStreamPan(napi_env env, napi_callback_info info) {
 napi_value NodeRaylibSetAudioStreamBufferSizeDefault(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   int size = get_int_arg(args, 0, env, info)
+  free(args);
   SetAudioStreamBufferSizeDefault(size);
   return n_undefined;
 }
@@ -5593,6 +6087,7 @@ napi_value NodeRaylibSetAudioStreamCallback(napi_env env, napi_callback_info inf
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   AudioCallback callback = get_undefined_arg(args, 1, env, info)
+  free(args);
   SetAudioStreamCallback(stream, callback);
   return n_undefined;
 }
@@ -5602,6 +6097,7 @@ napi_value NodeRaylibAttachAudioStreamProcessor(napi_env env, napi_callback_info
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   AudioCallback processor = get_undefined_arg(args, 1, env, info)
+  free(args);
   AttachAudioStreamProcessor(stream, processor);
   return n_undefined;
 }
@@ -5611,6 +6107,7 @@ napi_value NodeRaylibDetachAudioStreamProcessor(napi_env env, napi_callback_info
   napi_value* args = get_args(env, info, 2);
   AudioStream stream = get_AudioStream_arg(args, 0, env, info)
   AudioCallback processor = get_undefined_arg(args, 1, env, info)
+  free(args);
   DetachAudioStreamProcessor(stream, processor);
   return n_undefined;
 }
@@ -5619,6 +6116,7 @@ napi_value NodeRaylibDetachAudioStreamProcessor(napi_env env, napi_callback_info
 napi_value NodeRaylibAttachAudioMixedProcessor(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioCallback processor = get_undefined_arg(args, 0, env, info)
+  free(args);
   AttachAudioMixedProcessor(processor);
   return n_undefined;
 }
@@ -5627,6 +6125,7 @@ napi_value NodeRaylibAttachAudioMixedProcessor(napi_env env, napi_callback_info 
 napi_value NodeRaylibDetachAudioMixedProcessor(napi_env env, napi_callback_info info) {
   napi_value* args = get_args(env, info, 1);
   AudioCallback processor = get_undefined_arg(args, 0, env, info)
+  free(args);
   DetachAudioMixedProcessor(processor);
   return n_undefined;
 }
