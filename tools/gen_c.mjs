@@ -1,79 +1,3 @@
-/*
-Here is an example of a struct:
-
-// Return Color object to JavaScript
-static napi_value return_color(napi_env env, Color color) {
-  napi_value obj, r_val, g_val, b_val, a_val;
-  NAPI_CALL(env, napi_create_object(env, &obj));
-  NAPI_CALL(env, napi_create_uint32(env, color.r, &r_val));
-  NAPI_CALL(env, napi_create_uint32(env, color.g, &g_val));
-  NAPI_CALL(env, napi_create_uint32(env, color.b, &b_val));
-  NAPI_CALL(env, napi_create_uint32(env, color.a, &a_val));
-  NAPI_CALL(env, napi_set_named_property(env, obj, "r", r_val));
-  NAPI_CALL(env, napi_set_named_property(env, obj, "g", g_val));
-  NAPI_CALL(env, napi_set_named_property(env, obj, "b", b_val));
-  NAPI_CALL(env, napi_set_named_property(env, obj, "a", a_val));
-  return obj;
-}
-
-
-
-// get a single Color argument
-static Color get_color_arg(napi_value* args, int argNum, napi_env env, napi_callback_info info) {
-  Color color = {0, 0, 0, 255};  // Default to black with full alpha
-
-  if (args == NULL) return color;
-
-  // Check if the argument is an object
-  napi_valuetype valuetype;
-  napi_status status = napi_typeof(env, args[argNum], &valuetype);
-  if (status != napi_ok || valuetype != napi_object) {
-    return color;
-  }
-
-  // Get r value
-  napi_value r_value;
-  if (napi_get_named_property(env, args[argNum], "r", &r_value) == napi_ok) {
-    uint32_t r;
-    if (napi_get_value_uint32(env, r_value, &r) == napi_ok) {
-      color.r = (unsigned char)r;
-    }
-  }
-
-  // Get g value
-  napi_value g_value;
-  if (napi_get_named_property(env, args[argNum], "g", &g_value) == napi_ok) {
-    uint32_t g;
-    if (napi_get_value_uint32(env, g_value, &g) == napi_ok) {
-      color.g = (unsigned char)g;
-    }
-  }
-
-  // Get b value
-  napi_value b_value;
-  if (napi_get_named_property(env, args[argNum], "b", &b_value) == napi_ok) {
-    uint32_t b;
-    if (napi_get_value_uint32(env, b_value, &b) == napi_ok) {
-      color.b = (unsigned char)b;
-    }
-  }
-
-  // Get a value
-  napi_value a_value;
-  if (napi_get_named_property(env, args[argNum], "a", &a_value) == napi_ok) {
-    uint32_t a;
-    if (napi_get_value_uint32(env, a_value, &a) == napi_ok) {
-      color.a = (unsigned char)a;
-    }
-  }
-
-  return color;
-}
-
-
-
-*/
-
 import { readFile  } from 'node:fs/promises'
 
 const typeNames = JSON.parse(await readFile('tools/typeNames.json', 'utf8'))
@@ -120,6 +44,7 @@ napi_value NodeRaylibSayHello(napi_env env, napi_callback_info info) {
       for (const { type, name } of params) {
          functionBodyOut.push(`  ${type} ${name} = get_${typeNames[type]}_arg(args, ${i++}, env, info)`)
       }
+      functionBodyOut.push('  free(args);')
     }
     if (!f?.returnType || f.returnType === 'void') {
       functionBodyOut.push(`  ${f.name}(${params.map(p => p.name).join(', ')});`)
